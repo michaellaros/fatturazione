@@ -22,5 +22,5 @@ export class HttpTestService {
   GetRicevuta(){
     return this.http.get<{ricevute:IRicevuta[]}>(this.urlAPI).pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
-  
+
 }

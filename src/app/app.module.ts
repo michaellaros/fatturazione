@@ -7,12 +7,14 @@ import { MaterialModule } from './material/material.module';
 import { FiltroClientiComponent } from './components/filtro-clienti/filtro-clienti.component';
 import { FiltroRicevutaComponent } from './components/filtro-ricevuta/filtro-ricevuta.component';
 import { FormsModule } from '@angular/forms';
-
+import { DetailListComponent } from './components/detail-list/detail-list.component';
+import { HttpTestService } from './services/http-test.service';
 @NgModule({
   declarations: [
     AppComponent,
     FiltroClientiComponent,
     FiltroRicevutaComponent,
+    DetailListComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HttpTestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
