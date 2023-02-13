@@ -21,4 +21,8 @@ export class FiltroRicevutaComponent {
       gender: [null]
     });
    }
+
+  saveDetails(form: any) {
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(form.value, null, 4));
+  }
 }
