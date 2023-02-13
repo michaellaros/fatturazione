@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filtro-ricevuta',
@@ -8,17 +8,17 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FiltroRicevutaComponent {
    cassa!: string;
-  /*
+   form: FormGroup = new FormGroup({});
    public constructor(private fb: FormBuilder){}
 
    ngInit(){
     this.form = this.fb.group({
-      name: [null, [Validators.required, Validators.minLength(10)]],
-      email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      dob: [null, [Validators.required]],
+      negozio: [null],
+      cassa: [null],
+      dob: [null],
       address: [null],
       country: [null],
       gender: [null]
     });
-   }*/
+   }
 }
