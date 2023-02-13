@@ -1,0 +1,53 @@
+.header{
+  top:0;
+  left: 0;
+  height: 6vh;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Split the screen in half */
+.split {
+    
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    
+  }
+  
+/* Control the left side */
+.left {
+  left: 0;
+}
+
+
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+
+.top{
+  top:6vh;
+  height: 30vh;
+}
+
+
+.bot{
+  bottom: 0;
+  height: 64vh;
+}
+
+
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
