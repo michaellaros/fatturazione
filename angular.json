@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Fatturazione": {
+    "fatturazione": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Fatturazione:build:production"
+              "browserTarget": "fatturazione:build:production"
             },
             "development": {
-              "browserTarget": "Fatturazione:build:development"
+              "browserTarget": "fatturazione:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Fatturazione:build"
+            "browserTarget": "fatturazione:build"
           }
         },
         "test": {
