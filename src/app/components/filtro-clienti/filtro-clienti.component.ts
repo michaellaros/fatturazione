@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FiltroCliente} from 'src/app/models/filtroCliente';
-import { HttpTestService } from 'src/app/services/http-test.service';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-filtro-clienti',
@@ -11,7 +11,7 @@ export class FiltroClientiComponent {
 
 filtroCliente!: FiltroCliente;
 
-constructor(private httpTest: HttpTestService){
+constructor(private httpTest: HttpService){
 
 }
 

@@ -10,7 +10,7 @@ import { FiltroRicevuta } from '../models/filtroRicevuta';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpTestService {
+export class HttpService {
 
   public urlAPI:string = "http://localhost:28181/api/";
 
@@ -25,9 +25,11 @@ export class HttpTestService {
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
   
-  CercaRicevuta(filtriRicevuta:FiltroRicevuta){
-    return this.http.post<FiltroRicevuta>(this.urlAPI+"Ricevuta/CercaRicevuta/",filtriRicevuta)
-                  .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
+  RicercaRicevuta(filtriRicevuta:any){
+    return this.http.post<{ricevuteTrovate:string[]}>(this.urlAPI+"Ricevuta/",filtriRicevuta)
+                  .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error( error.message || "Server error!"))));
   }
+
+  
 
 }

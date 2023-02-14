@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Ricevuta } from 'src/app/models/ricevuta';
-import { HttpTestService } from 'src/app/services/http-test.service';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-detail-list',
@@ -11,7 +11,7 @@ export class DetailListComponent {
 displayedColumns: string[] = ['Codice', 'Descrizione', 'Prezzo', 'IVA'];
 ricevuta! : Ricevuta;
 
-constructor(private httpTest: HttpTestService){
+constructor(private httpTest: HttpService){
 
 }
 ngOnInit(){

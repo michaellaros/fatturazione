@@ -6,9 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FiltroClientiComponent } from './components/filtro-clienti/filtro-clienti.component';
 import { FiltroRicevutaComponent } from './components/filtro-ricevuta/filtro-ricevuta.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { DetailListComponent } from './components/detail-list/detail-list.component';
-import { HttpTestService } from './services/http-test.service';
+import { HttpService } from './services/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,9 +25,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
-  providers: [HttpTestService],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
