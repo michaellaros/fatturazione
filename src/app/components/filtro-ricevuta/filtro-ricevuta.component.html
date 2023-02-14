@@ -1,39 +1,42 @@
 <div class="row">
-    <div class="col-sm-10">
+  <div class="col-md-8">
         <form #filtroRicevuta="ngForm" (ngSubmit)="saveDetails(filtroRicevuta)">
-            <div class="row">
-                <div class="col-sm-6">
+
+          <div class="row">
                     <mat-form-field appearance="fill">
                         <mat-label>Negozio</mat-label>
                         <input matInput name="negozio" ngModel>
                     </mat-form-field>
-                </div>
-                
-                <div class="col-sm-6">
-                    <mat-form-field appearance="fill" class="input">
+                  </div>
+
+                    <div class="row">
+                    <mat-form-field appearance="fill" class="col-sm-7">
                         <mat-label>Cassa</mat-label>
                         <input matInput name="cassa" ngModel>
                     </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <mat-form-field class="col-sm-6" appearance="fill">
+                  </div>
+
+                  <div class="row">
+                <mat-form-field class="col-sm-10" appearance="fill">
                     <mat-label>Transazione</mat-label>
                     <input matInput  name="transazione" ngModel>
                 </mat-form-field>
-                
-                <mat-form-field class="col-sm-6" appearance="fill">
+                </div>
+
+                <div class="row">
+                <mat-form-field class="col-sm-12" appearance="fill">
                     <mat-label>Choose a date</mat-label>
                     <input matInput  [matDatepicker]="picker" name="data" ngModel>
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker  #picker></mat-datepicker>
-                </mat-form-field>
-            </div>
+                  </mat-form-field>
+                </div>
         </form>
     </div>
-    <div class="col-md-2">
-        <button type="submit">Submit</button>
+    <div class="col-md-3">
+        <button type="submit" class=>Submit</button>
+
     </div>
 </div>
 
