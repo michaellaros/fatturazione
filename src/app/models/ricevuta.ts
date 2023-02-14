@@ -1,8 +1,8 @@
-import { IArticolo } from "./articolo";
+import { Articolo } from "./articolo";
 
-export interface IRicevuta{
+export interface Ricevuta{
     nome_ricevuta:string,
-    articoli:IArticolo[],
+    articoli:Articolo[],
     prezzo_totale:number,
     numero_articoli:number,
     numero_sconti:number

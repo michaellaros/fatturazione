@@ -8,19 +8,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FiltroRicevutaComponent {
    cassa!: string;
-   form: FormGroup = new FormGroup({});
-   public constructor(private fb: FormBuilder){}
+   public constructor(){}
 
-   ngInit(){
-    this.form = this.fb.group({
-      negozio: [null],
-      cassa: [null],
-      dob: [null],
-      address: [null],
-      country: [null],
-      gender: [null]
-    });
-   }
+
 
   saveDetails(form: any) {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(form.value, null, 4));

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import { IRicevuta } from '../models/ricevuta';
+import { Ricevuta } from '../models/ricevuta';
+import { FiltroRicevuta } from '../models/filtroRicevuta';
 
 
 
@@ -11,7 +12,7 @@ import { IRicevuta } from '../models/ricevuta';
 })
 export class HttpTestService {
 
-  public urlAPI:string = "http://localhost:28181/api/Ricevuta/DB/";
+  public urlAPI:string = "http://localhost:28181/api/";
 
   constructor(private http:HttpClient) { }
 
@@ -20,7 +21,13 @@ export class HttpTestService {
   }
 
   GetRicevuta(){
-    return this.http.get<{ricevute:IRicevuta[]}>(this.urlAPI).pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
+    return this.http.get<{ricevute:Ricevuta[]}>(this.urlAPI+"Ricevuta/DB/")
+                  .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
+  }
+  
+  CercaRicevuta(filtriRicevuta:FiltroRicevuta){
+    return this.http.post<FiltroRicevuta>(this.urlAPI+"Ricevuta/CercaRicevuta/",filtriRicevuta)
+                  .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
 
 }

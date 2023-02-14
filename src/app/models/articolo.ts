@@ -1,4 +1,4 @@
-export interface IArticolo{
+export interface Articolo{
     desc_articolo:string,
     prezzo:number,
     quantita:number,

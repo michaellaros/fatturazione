@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailListComponent } from './components/detail-list/detail-list.component';
 import { HttpTestService } from './services/http-test.service';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,

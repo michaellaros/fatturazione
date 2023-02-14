@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IRicevuta } from 'src/app/models/ricevuta';
+import { Ricevuta } from 'src/app/models/ricevuta';
 import { HttpTestService } from 'src/app/services/http-test.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { HttpTestService } from 'src/app/services/http-test.service';
 })
 export class DetailListComponent {
 displayedColumns: string[] = ['Codice', 'Descrizione', 'Prezzo', 'IVA'];
-ricevuta! : IRicevuta;
+ricevuta! : Ricevuta;
 
 constructor(private httpTest: HttpTestService){
 

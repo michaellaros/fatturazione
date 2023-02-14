@@ -1,8 +1,7 @@
 <div class="container">
     <h2>Scontrino</h2>
     <div>
-        <form #filtroRicevuta="ngForm" (ngSubmit)="saveDetails(form)">
-            
+        <form #filtroRicevuta="ngForm" (ngSubmit)="saveDetails(filtroRicevuta)">
             <mat-form-field appearance="fill">
                 <mat-label>Negozio</mat-label>
                 <input matInput name="negozio" ngModel>
@@ -20,10 +19,10 @@
             
             <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" name="data">
+                <input matInput [matDatepicker]="picker" name="data" ngModel>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker  #picker></mat-datepicker>
             </mat-form-field>
             <button type="submit">Submit</button>
         </form>
