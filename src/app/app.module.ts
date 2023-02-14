@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailListComponent } from './components/detail-list/detail-list.component';
 import { HttpTestService } from './services/http-test.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [HttpTestService],
   bootstrap: [AppComponent]
