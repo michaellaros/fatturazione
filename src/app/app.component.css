@@ -9,13 +9,6 @@
 }
 
 /* Split the screen in half */
-.split {
-    
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    
-  }
   
 /* Control the left side */
 .left {

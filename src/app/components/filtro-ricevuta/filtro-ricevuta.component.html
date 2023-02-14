@@ -1,38 +1,39 @@
-<div class="container">
-    <h2>Scontrino</h2>
-    <div class="col-sm-12">
+<div class="row">
+    <div class="col-sm-10">
         <form #filtroRicevuta="ngForm" (ngSubmit)="saveDetails(filtroRicevuta)">
-            <div class="col-sm-3">
-                <mat-form-field appearance="fill">
-                    <mat-label>Negozio</mat-label>
-                    <input matInput name="negozio" ngModel>
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Negozio</mat-label>
+                        <input matInput name="negozio" ngModel>
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-sm-6">
+                    <mat-form-field appearance="fill" class="input">
+                        <mat-label>Cassa</mat-label>
+                        <input matInput name="cassa" ngModel>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-sm-6" appearance="fill">
+                    <mat-label>Transazione</mat-label>
+                    <input matInput  name="transazione" ngModel>
+                </mat-form-field>
+                
+                <mat-form-field class="col-sm-6" appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput  [matDatepicker]="picker" name="data" ngModel>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker  #picker></mat-datepicker>
                 </mat-form-field>
             </div>
-            
-            <div class="col-sm-3">
-                <mat-form-field appearance="fill" class="input">
-                    <mat-label>Cassa</mat-label>
-                    <input matInput class="col-sm-6" name="cassa" ngModel>
-                </mat-form-field>
-            </div>
-            
-            
-            <mat-form-field appearance="fill">
-                <mat-label>Transazione</mat-label>
-                <input matInput class="col-sm-6" name="transazione" ngModel>
-            </mat-form-field>
-            
-            <mat-form-field class="col-sm-6" appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput  [matDatepicker]="picker" name="data" ngModel>
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker  #picker></mat-datepicker>
-            </mat-form-field>
-            <button type="submit">Submit</button>
         </form>
-        
-        
     </div>
-
+    <div class="col-md-2">
+        <button type="submit">Submit</button>
+    </div>
 </div>
+
