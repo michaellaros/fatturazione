@@ -5,13 +5,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
 const MaterialComponents = [
   MatButtonModule
   ,MatFormFieldModule
   ,MatDatepickerModule
   ,MatNativeDateModule
-  ,MatInputModule,
-  MatTableModule
+  ,MatInputModule
+  ,MatTableModule
+  ,MatListModule
 ];
 
 @NgModule({

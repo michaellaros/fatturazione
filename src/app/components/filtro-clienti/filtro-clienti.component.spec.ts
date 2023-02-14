@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FiltroClientiComponent } from './filtro-clienti.component';
 
 describe('FiltroClientiComponent', () => {
-  let component: FiltroClientiComponent;
+  let component: FiltroClientiComponent
+                  ;
   let fixture: ComponentFixture<FiltroClientiComponent>;
 
   beforeEach(async () => {
@@ -20,4 +21,5 @@ describe('FiltroClientiComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
