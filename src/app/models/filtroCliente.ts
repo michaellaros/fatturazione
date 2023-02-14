@@ -1,4 +1,4 @@
-export interface FiltroRicevuta{
+export interface FiltroCliente{
     clientSurname:string,
     clientName:string,
     birthDate:Date,
