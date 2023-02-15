@@ -1,31 +1,58 @@
-<table mat-table [dataSource]="ricevuta.articoli" class="mat-elevation-z8">
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="Codice">
-    <th mat-header-cell *matHeaderCellDef> Codice </th>
-    <td mat-cell *matCellDef="let ricevuta"> {{01}} </td>
-  </ng-container>
+<div class="row" *ngIf="ricevuta != null">
+  <div class="col-md-6">
+              
+    <h2>Dettaglio</h2>
+    <table mat-table [dataSource]="ricevuta.articoli" class="mat-elevation-z8">
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="Descrizione">
-    <th mat-header-cell *matHeaderCellDef> Descrizione </th>
-    <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.desc_articolo}} </td>
-  </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Codice">
+        <th mat-header-cell *matHeaderCellDef> Codice </th>
+        <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.cod_articolo}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="Descrizione">
+        <th mat-header-cell *matHeaderCellDef> Descrizione </th>
+        <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.desc_articolo}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Prezzo">
+        <th mat-header-cell *matHeaderCellDef> Prezzo </th>
+        <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.prezzo}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="IVA">
+        <th mat-header-cell *matHeaderCellDef> IVA </th>
+        <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.ivaArticolo.ivaPrice}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="columnsRicevuta"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsRicevuta;"></tr>
+    </table>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="Prezzo">
-    <th mat-header-cell *matHeaderCellDef> Prezzo </th>
-    <td mat-cell *matCellDef="let ricevuta"> {{ricevuta.prezzo}} </td>
-  </ng-container>
+  </div>
+  <div class="col-md-6">
+    <h2>Riepilogo IVA</h2>
+    <table mat-table [dataSource]="ricevuta.riepilogoIva" class="mat-elevation-z8">
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="IVA">
-    <th mat-header-cell *matHeaderCellDef> IVA </th>
-    <td mat-cell *matCellDef="let ricevuta"> {{01}} </td>
-  </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="Codice">
+        <th mat-header-cell *matHeaderCellDef> Gruppo IVA </th>
+        <td mat-cell *matCellDef="let iva"> {{iva.ivaGroup}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Prezzo">
+        <th mat-header-cell *matHeaderCellDef> Prezzo </th>
+        <td mat-cell *matCellDef="let iva"> {{iva.ivaPrice}} </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="columnsIVA"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsIVA;"></tr>
+    </table>
+  </div>
+</div>
 
 
