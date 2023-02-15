@@ -12,6 +12,7 @@ import { HttpService } from './services/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModaleRicevutaComponent } from './components/modale-ricevuta/modale-ricevuta.component';
+import { ModaleClientiComponent } from './components/filtro-clienti/modale-clienti/modale-clienti.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ModaleRicevutaComponent } from './components/modale-ricevuta/modale-ric
     FiltroRicevutaComponent,
     DetailListComponent,
     ModaleRicevutaComponent,
+    ModaleClientiComponent,
   ],
   imports: [
     BrowserModule,

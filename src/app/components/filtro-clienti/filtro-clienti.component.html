@@ -1,44 +1,37 @@
-<div class="row">
-  <div class="col-md-8">
-    <form #filtroRicevuta="ngForm" (ngSubmit)="saveDetails(filtroRicevuta)">
-      <mat-form-field appearance="fill">
-          <mat-label>Cognome</mat-label>
-          <input matInput name="Cognome" ngModel>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="input">
-          <mat-label>Nome</mat-label>
-          <input matInput name="Nome" ngModel>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="input">
-        <mat-label>Data di nascita</mat-label>
-        <input matInput name="Data di nascita" ngModel>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="input">
-        <mat-label>Indirizzo</mat-label>
-        <input matInput name="Indirizzo" ngModel>
-      </mat-form-field>
-    </form>
+  <div class="row">
+    <div class="col-md-8">
+      <form [formGroup]="form" id="form" >
+        <mat-form-field appearance="fill">
+            <mat-label>Cognome</mat-label>
+            <input matInput name="clientSurname" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Nome</mat-label>
+            <input matInput name="clientName" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input">
+          <mat-label>Data di nascita</mat-label>
+          <input matInput name="birthDate" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input">
+          <mat-label>Indirizzo</mat-label>
+          <input matInput name="clientAdress" >
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <button mat-fab color="primary" (click)="RicercaCliente(form)">
+          <mat-icon>search</mat-icon>
+      </button>
   </div>
+    <div class="col-md-4">
+      <!-- <h3>Informazioni cliente</h3>
+      <mat-list role="list">
 
-  <div class="col-md-4">
-    <h3>Informazioni cliente</h3>
-    <mat-list role="list">
-
-      <mat-list-item role="listitem" >Cognome:</mat-list-item>
-      <mat-list-item role="listitem" >Nome:</mat-list-item>
-      <mat-list-item role="listitem" >Anno di nascita:</mat-list-item>
-      <mat-list-item role="listitem" >Indirizzo:</mat-list-item>
-    </mat-list>
+        <mat-list-item role="listitem" >Cognome:{{cliente.cognome}}</mat-list-item>
+        <mat-list-item role="listitem" >Nome:{{cliente.nome}}</mat-list-item>
+        <mat-list-item role="listitem" >Anno di nascita:{{cliente.data_nascita}}</mat-list-item>
+        <mat-list-item role="listitem" >Indirizzo:{{cliente.indirizzo}}</mat-list-item>
+      </mat-list> -->
+    </div>
   </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
