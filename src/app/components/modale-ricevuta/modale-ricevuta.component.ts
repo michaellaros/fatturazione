@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ModaleRicevutaComponent {
 
   ricevute:string[];
+  ricevutaSelezionata:string|null = null;
 
   constructor(public dialogRef: MatDialogRef<ModaleRicevutaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string[]){

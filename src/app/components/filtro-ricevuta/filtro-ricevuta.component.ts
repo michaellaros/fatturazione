@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FiltroRicevuta } from 'src/app/models/filtroRicevuta';
@@ -15,6 +15,7 @@ export class FiltroRicevutaComponent {
   public ricevutaSelezionata:string|null = null;
   public ricevuteTrovate:string[]|null = null;
   public form:FormGroup;
+  @Output() public childEvent = new EventEmitter<string>();
 
 
   public constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog: MatDialog)
@@ -38,7 +39,12 @@ export class FiltroRicevutaComponent {
   }
 
   openDialog(ricevute:string[]): void {
-    this.dialog.open(ModaleRicevutaComponent, {data:ricevute
+    const dialogRef = this.dialog.open(ModaleRicevutaComponent, {data:ricevute
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed: '+result);
+      this.childEvent.emit(result);
+      
     });
   }
 

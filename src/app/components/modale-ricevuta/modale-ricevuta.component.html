@@ -7,6 +7,6 @@
     </mat-selection-list>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="ricevuteList.selectedOptions.hasValue() ? ricevuteList.selectedOptions.selected[0].value : null">conferma</button>
   
 </div>

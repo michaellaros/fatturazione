@@ -12,7 +12,7 @@ import { FiltroRicevuta } from '../models/filtroRicevuta';
 })
 export class HttpService {
 
-  public urlAPI:string = "http://localhost:28181/api/";
+  public urlAPI:string = "http://localhost:56209/api/";
 
   constructor(private http:HttpClient) { }
 
@@ -20,8 +20,13 @@ export class HttpService {
     return this.http.get(this.urlAPI, { responseType: 'text' });
   }
 
-  GetRicevuta(){
+  GetRicevute(){
     return this.http.get<{ricevute:Ricevuta[]}>(this.urlAPI+"Ricevuta/DB/")
+                  .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
+  }
+  GetRicevuta(fileName:string){
+    console.log(this.urlAPI+"Ricevuta/"+fileName);
+    return this.http.get<Ricevuta>(this.urlAPI+"Ricevuta/"+fileName)
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
   
