@@ -25,8 +25,8 @@ export class HttpService {
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
   GetRicevuta(fileName:string){
-    console.log(this.urlAPI+"Ricevuta/"+fileName);
-    return this.http.get<Ricevuta>(this.urlAPI+"Ricevuta/"+fileName)
+    console.log(this.urlAPI+"Ricevuta?fileName="+fileName);
+    return this.http.post<Ricevuta>(this.urlAPI+"Ricevuta/GetRicevuta",{fileName})
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
   

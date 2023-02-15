@@ -13,7 +13,7 @@ import { ModaleRicevutaComponent } from '../modale-ricevuta/modale-ricevuta.comp
 export class FiltroRicevutaComponent {
   cassa!: string;
   public ricevutaSelezionata:string|null = null;
-  public ricevuteTrovate:string[]|null = null;
+  public ricevuteTrovate:string[] = [];
   public form:FormGroup;
   @Output() public childEvent = new EventEmitter<string>();
 
@@ -30,10 +30,9 @@ export class FiltroRicevutaComponent {
   }
 
   RicercaRicevuta(form:any){
-    console.log(JSON.stringify(form.value, null, 4));
     this.httpclient.RicercaRicevuta(form.value)
     .subscribe({
-      next: (data) => {this.openDialog(data.ricevute); console.log(data.ricevute)},
+      next: (data) => {this.openDialog(data.ricevute)},
       complete: () => console.info('complete') 
   });
   }
