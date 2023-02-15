@@ -11,6 +11,7 @@ import { DetailListComponent } from './components/detail-list/detail-list.compon
 import { HttpService } from './services/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModaleRicevutaComponent } from './components/modale-ricevuta/modale-ricevuta.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FiltroClientiComponent,
     FiltroRicevutaComponent,
     DetailListComponent,
+    ModaleRicevutaComponent,
   ],
   imports: [
     BrowserModule,

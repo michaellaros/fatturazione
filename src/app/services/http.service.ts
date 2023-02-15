@@ -26,7 +26,7 @@ export class HttpService {
   }
   
   RicercaRicevuta(filtriRicevuta:any){
-    return this.http.post<{ricevuteTrovate:string[]}>(this.urlAPI+"Ricevuta/",filtriRicevuta)
+    return this.http.post<{ricevute:string[]}>(this.urlAPI+"Ricevuta/",filtriRicevuta)
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error( error.message || "Server error!"))));
   }
 

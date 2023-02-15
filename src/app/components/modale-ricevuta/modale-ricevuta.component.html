@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Selezionare la ricevuta desiderata:</h1>
+<div mat-dialog-content>
+    <mat-selection-list #ricevuteList [multiple]="false">
+      <mat-list-option *ngFor="let ricevuta of ricevute" [value]="ricevuta">
+        {{ricevuta.substring(ricevuta.lastIndexOf('\\')+1)}}
+      </mat-list-option>
+    </mat-selection-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  
+</div>
