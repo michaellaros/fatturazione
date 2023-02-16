@@ -17,22 +17,23 @@
       </div>
       <div class="row">
         <mat-form-field appearance="fill">
+          <mat-label>Indirizzo</mat-label>
+          <input matInput formControlName="clientAdress" >
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill">
           <mat-label>Data di nascita</mat-label>
           <input matInput  [matDatepicker]="picker" formControlName="birthDate">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker  #picker></mat-datepicker>
         </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill">
-          <mat-label>Indirizzo</mat-label>
-          <input matInput formControlName="clientAdress" >
-        </mat-form-field>
+
       </div>
       </form>
 
-      <button mat-fab color="primary" (click)="RicercaCliente(form)">
+      <button mat-fab color="primary" class="m-2" (click)="RicercaCliente(form)">
         <mat-icon>search</mat-icon>
       </button>
     </div>
