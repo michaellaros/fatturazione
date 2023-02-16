@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Ricevuta } from 'src/app/models/ricevuta';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -20,8 +20,14 @@ export class DetailListComponent {
     this.httpTest.GetRicevuta(this.fileName).subscribe((data)=>
     {
       this.ricevuta = data;
-    console.log(data)});
+    console.log(data,"ciao")});
+  }
 
-}
+  ngOnChanges(changes: SimpleChanges){
+    this.httpTest.GetRicevuta(changes["fileName"].currentValue).subscribe((data)=>
+    {
+      this.ricevuta = data;
+    console.log(data,"ciao")});
+  }
 
 }

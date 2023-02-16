@@ -33,7 +33,7 @@ export class FiltroRicevutaComponent {
     this.httpclient.RicercaRicevuta(form.value)
     .subscribe({
       next: (data) => {this.openDialog(data.ricevute)},
-      complete: () => console.info('complete') 
+      complete: () => console.info('complete')
   });
   }
 
@@ -43,9 +43,9 @@ export class FiltroRicevutaComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed: '+result);
       this.childEvent.emit(result);
-      
+
     });
   }
 
-  
+
 }

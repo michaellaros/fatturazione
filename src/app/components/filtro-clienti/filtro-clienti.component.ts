@@ -26,10 +26,9 @@ constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog
 
 }
 RicercaCliente(form:any){
-  console.log(JSON.stringify(form.value, null, 4));
   this.httpclient.RicercaCliente(form.value)
   .subscribe({
-    next: (data) => {this.openDialog(data.clienti);console.log(data)},
+    next: (data) => {this.openDialog(data.clienti)},
     complete: () => console.info('complete')
 });
 }
