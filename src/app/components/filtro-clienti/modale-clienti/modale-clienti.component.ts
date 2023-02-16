@@ -15,6 +15,7 @@ export class ModaleClientiComponent {
   constructor(public dialogRef: MatDialogRef<ModaleClientiComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Cliente[]){
       this.clienti = data;
+      console.log(this.clienti);
   }
 
   onNoClick(): void {

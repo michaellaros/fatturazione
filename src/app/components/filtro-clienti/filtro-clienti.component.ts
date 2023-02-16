@@ -18,10 +18,10 @@ export class FiltroClientiComponent {
 
 constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog: MatDialog){
               this.form = this.fb.group({
-                Cognome: new FormControl(),
-                Nome: new FormControl(),
-                Anno_di_nascita: new FormControl(),
-                Indirizzo: new FormControl()
+                clientSurname: new FormControl(),
+                clientName: new FormControl(),
+                birthDate: new FormControl(),
+                clientAdress: new FormControl()
               });
 
 }
@@ -29,7 +29,7 @@ RicercaCliente(form:any){
   console.log(JSON.stringify(form.value, null, 4));
   this.httpclient.RicercaCliente(form.value)
   .subscribe({
-    next: (data) => {this.openDialog(data.clienti)},
+    next: (data) => {this.openDialog(data.clienti);console.log(data)},
     complete: () => console.info('complete')
 });
 }
@@ -38,7 +38,7 @@ openDialog(clienti:Cliente[]): void {
   const dialogRef = this.dialog.open(ModaleClientiComponent, {data:clienti
   });
   dialogRef.afterClosed().subscribe(result => {
-    console.log(result);
+    this.cliente = result;
   });
 
 }

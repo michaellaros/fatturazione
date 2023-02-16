@@ -1,7 +1,7 @@
 export interface Cliente{
-  cognome:string,
-  nome:string,
-  data_nascita:Date,
-  indirizzo:string,
-  email:string
+  clientSurname:string,
+  clientName:string,
+  birthDate:Date,
+  clientAddress:string,
+  clientEmail:string
 }

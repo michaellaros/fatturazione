@@ -29,13 +29,12 @@ export class HttpService {
   }
 
   GetRicevuta(fileName:string){
-    console.log(this.urlAPI+"Ricevuta?fileName="+fileName);
     return this.http.post<Ricevuta>(this.urlAPI+"Ricevuta/GetRicevuta",{fileName})
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error(error.message || "Server error!"))));
   }
 
   RicercaCliente(filtriCliente:any){
-    return this.http.post<{clienti:Cliente[]}>(this.urlAPI+"Cliente/Cliente/",filtriCliente)
+    return this.http.post<{clienti:Cliente[]}>(this.urlAPI+"Cliente/",filtriCliente)
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error( error.message || "Server error!"))));
   }
 
