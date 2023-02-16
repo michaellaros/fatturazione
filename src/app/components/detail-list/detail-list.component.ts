@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Ricevuta } from 'src/app/models/ricevuta';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,24 +10,11 @@ import { HttpService } from 'src/app/services/http.service';
 export class DetailListComponent {
   columnsRicevuta: string[] = ["Codice", "Descrizione", "Prezzo", "IVA"];
   columnsIVA: string[] = ["Codice", "Prezzo"];
-  ricevuta! : Ricevuta;
-  @Input() fileName!:string;
+  @Input() ricevuta! : Ricevuta;
 
   constructor(private httpTest: HttpService){
 
   }
-  ngOnInit(){
-    this.httpTest.GetRicevuta(this.fileName).subscribe((data)=>
-    {
-      this.ricevuta = data;
-    console.log(data,"ciao")});
-  }
 
-  ngOnChanges(changes: SimpleChanges){
-    this.httpTest.GetRicevuta(changes["fileName"].currentValue).subscribe((data)=>
-    {
-      this.ricevuta = data;
-    console.log(data,"ciao")});
-  }
 
 }

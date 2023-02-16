@@ -43,6 +43,11 @@ export class HttpService {
                   .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error( error.message || "Server error!"))));
   }
 
+  SendPDF(ricevuta:Ricevuta, cliente:Cliente){
+    return this.http.post<{cliente:Cliente,ricevuta:Ricevuta}>(this.urlAPI+"PDF/SendPDF",{cliente,ricevuta})
+    .pipe(catchError((error:HttpErrorResponse) => throwError(() =>new Error( error.message || "Server error!"))))
+  }
+
 
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,EventEmitter,Output } from '@angular/core';
 import {FiltroCliente} from 'src/app/models/filtroCliente';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleClientiComponent } from '../filtro-clienti/modale-clienti/modale-clienti.component';
@@ -15,6 +15,7 @@ export class FiltroClientiComponent {
   filtroCliente!: FiltroCliente;
   cliente!:Cliente;
   public form:FormGroup;
+  @Output() public childEvent = new EventEmitter<Cliente>();
 
 constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog: MatDialog){
               this.form = this.fb.group({
@@ -38,13 +39,10 @@ openDialog(clienti:Cliente[]): void {
   });
   dialogRef.afterClosed().subscribe(result => {
     this.cliente = result;
+    this.childEvent.emit(result);
   });
 
 }
-saveDetails(form:any) {
- alert('SUCCESS!! :-)\n\n' + JSON.stringify(form.value, null, 4));
-  }
-
 }
 
 
