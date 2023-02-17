@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModaleRicevutaComponent } from './components/modale-ricevuta/modale-ricevuta.component';
 import { ModaleClientiComponent } from './components/filtro-clienti/modale-clienti/modale-clienti.component';
-import { ErrorComponentComponent } from './error-component/error-component.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
     DetailListComponent,
     ModaleRicevutaComponent,
     ModaleClientiComponent,
-    ErrorComponentComponent,
   ],
   imports: [
     BrowserModule,
