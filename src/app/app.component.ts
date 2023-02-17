@@ -30,7 +30,8 @@ constructor(private http:HttpService){
     console.log(data,"ciao")});
 
   }
-
+  openDialog(error:any): void {
+  }
 }
 
 
