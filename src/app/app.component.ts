@@ -19,7 +19,7 @@ constructor(private http:HttpService){
 }
 
   SendPDF(){
-    this.http.SendPDF(this.ricevuta,this.cliente).subscribe();
+    this.http.getPDF();
 
   }
 

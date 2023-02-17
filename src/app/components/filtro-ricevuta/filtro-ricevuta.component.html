@@ -1,6 +1,7 @@
 <div class="row">
+    <form [formGroup]="form" id="form" (ngSubmit)="RicercaRicevuta(form)">
     <div class="col-sm-8">
-        <form [formGroup]="form" id="form">
+        
                 <div class="row">
                     <mat-form-field appearance="fill" class="col-sm-8">
                         <mat-label>Negozio</mat-label>
@@ -31,13 +32,15 @@
                         <mat-datepicker  #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
-        </form>
+        
     </div>
+    <div class="col-md-4">
+        <button mat-fab color="primary" class="m-2" type="submit">
+            <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </form>
 
 </div>
-<div class="col-md-4">
-  <button mat-fab color="primary" class="m-2" (click)="RicercaRicevuta(form)">
-      <mat-icon>search</mat-icon>
-  </button>
-</div>
+
 

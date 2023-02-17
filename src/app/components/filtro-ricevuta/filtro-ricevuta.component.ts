@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FiltroRicevuta } from 'src/app/models/filtroRicevuta';
 import { HttpService } from 'src/app/services/http.service';
@@ -21,10 +21,10 @@ export class FiltroRicevutaComponent {
   public constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog: MatDialog)
   {
     this.form = this.fb.group({
-      negozio: new FormControl(),
-      cassa: new FormControl(),
+      negozio: new FormControl('', [Validators.required]),
+      cassa: new FormControl('', [Validators.required]),
       transazione: new FormControl(),
-      data: new FormControl()
+      data: new FormControl('', [Validators.required])
     });
 
   }
