@@ -14,7 +14,7 @@
         <app-detail-list [ricevuta] = "ricevuta" *ngIf="ricevuta!=null"></app-detail-list>
         <div class="row justify-content-end">
 
-          <button class="btn btn-primary"  [disabled]="cliente == null" style="margin:12px" (click)="SendPDF()" class="col-md-2 float-right" mat-raised-button color="primary" >Send PDF</button>
+          <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" style="margin:12px" (click)="SendPDF()" class="col-md-2 float-right" mat-raised-button color="primary" >Send PDF</button>
 
         </div>
 </div>
