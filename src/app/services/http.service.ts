@@ -42,9 +42,19 @@ export class HttpService {
   }
 
   SendPDF(ricevuta:Ricevuta, cliente:Cliente){
-    return this.http.post<{cliente:Cliente,ricevuta:Ricevuta}>(this.urlAPI+"PDF/SendPDF",{cliente,ricevuta})
-          .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
+    return this.http.post(this.urlAPI+"PDF/SendPDF",{cliente,ricevuta},{responseType: 'blob' as 'json'})
+                  .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
+                  .subscribe(data => this.DownloadPDF(data))
+          
   }
+
+  getPDF(){
+    return this.http.get(this.urlAPI+"PDF",{responseType: 'blob' as 'json'})
+                  .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
+                  .subscribe(data => this.DownloadPDF(data))
+          
+  }
+
   ErrorHandler(error:HttpErrorResponse)
   {
     const dialogRef = this.dialog.open(ModaleErroreComponent, {data:error
@@ -57,6 +67,19 @@ export class HttpService {
     return throwError(() =>new Error( error.message || "Server error!"));
 
   }
+
+  DownloadPDF(data:any) {
+
+    let blob = new Blob([data], {type: 'application/pdf'});
+  
+    var downloadURL = window.URL.createObjectURL(data);
+    var link = document.createElement('a');
+    link.href = downloadURL;
+    link.download = "help.pdf";
+    link.click();
+  
+  }
+  
 
 
 }
