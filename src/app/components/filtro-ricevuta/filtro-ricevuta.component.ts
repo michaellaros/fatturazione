@@ -30,11 +30,14 @@ export class FiltroRicevutaComponent {
   }
 
   RicercaRicevuta(form:any){
-    this.httpclient.RicercaRicevuta(form.value)
+    if(form.valid){
+      this.httpclient.RicercaRicevuta(form.value)
     .subscribe({
       next: (data) => {this.openDialog(data.ricevute)},
       complete: () => console.info('complete')
   });
+    }
+    
   }
 
   openDialog(ricevute:string[]): void {

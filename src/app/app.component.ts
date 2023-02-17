@@ -20,17 +20,15 @@ constructor(private http:HttpService){
 
   SendPDF(){
     this.http.getPDF();
-
   }
 
   SetRicevuta(filename:string ){
     this.http.GetRicevuta(filename).subscribe((data)=>
     {
       this.ricevuta = data;
-    console.log(data,"ciao")});
+      console.log(data,"ciao")
+    });
 
-  }
-  openDialog(error:any): void {
   }
 }
 
