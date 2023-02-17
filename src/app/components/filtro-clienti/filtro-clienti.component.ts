@@ -3,7 +3,7 @@ import {FiltroCliente} from 'src/app/models/filtroCliente';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleClientiComponent } from '../filtro-clienti/modale-clienti/modale-clienti.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { CheckboxRequiredValidator, FormBuilder, FormControl, FormGroup, RequiredValidator } from '@angular/forms';
 import { Cliente } from 'src/app/models/cliente';
 
 @Component({

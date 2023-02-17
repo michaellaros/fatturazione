@@ -33,7 +33,7 @@
       </div>
       </form>
 
-      <button mat-fab color="primary" class="m-2" (click)="RicercaCliente(form)">
+      <button mat-fab [disabled]="cliente == null"  color="primary" class="m-2" (click)="RicercaCliente(form)">
         <mat-icon>search</mat-icon>
       </button>
     </div>
