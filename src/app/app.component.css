@@ -9,7 +9,7 @@
 }
 
 /* Split the screen in half */
-  
+
 /* Control the left side */
 .left {
   left: 0;
@@ -33,6 +33,9 @@
   height: 64vh;
 }
 
+
+.col-md-6 {border-style: solid;}
+.detail {border-style: solid;}
 
 
 /* If you want the content centered horizontally and vertically */
