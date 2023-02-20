@@ -1,6 +1,6 @@
 
 <div class="row" *ngIf="ricevuta != null">
-  <div class="col-md-6">
+  <div class="col-md-6" style="padding-left: 4vh;">
 
     <h2>Dettaglio</h2>
     <table mat-table [dataSource]="ricevuta.articoli" class="mat-elevation-z8">
@@ -34,7 +34,7 @@
     </table>
 
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" style="padding-left: 4vh;">
     <h2>Riepilogo IVA</h2>
     <table mat-table [dataSource]="ricevuta.riepilogoIva" class="mat-elevation-z8">
 
