@@ -19,7 +19,9 @@ constructor(private http:HttpService){
 }
 
   SendPDF(){
-    this.http.getPDF();
+    console.log(this.ricevuta,this.cliente);
+    this.http.SendPDF(this.ricevuta,this.cliente);
+    
   }
 
   SetRicevuta(filename:string ){
