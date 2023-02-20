@@ -1,21 +1,23 @@
-<mat-toolbar color="primary"><span>Fatturazione</span></mat-toolbar>
-<div class="container">
-    <div class="row">
+
+<mat-toolbar color="primary"><span class="centro" style="font-size: 200%;">Fatturazione</span></mat-toolbar>
+<!-- <div class="container"> -->
+    <div class="row" style="padding-left: 3vh; padding-top: 2vh ;">
         <div class=" col-md-6">
-            <h2>Scontrino</h2>
+            <h1 class="titolo">Scontrino</h1>
             <app-filtro-ricevuta (childEvent)="SetRicevuta($event)" class="container"></app-filtro-ricevuta>
         </div>
-        <div class=" col-md-6">
-                <h2>Destinatario</h2>
+        <div class=" col-md-6 vl" style="padding-left: 3vh;">
+                <h1 class="titolo" >Destinatario</h1>
                 <app-filtro-clienti (childEvent)="cliente = $event" class="container"></app-filtro-clienti>
         </div>
-    </div>
 
+    </div>
+      <hr>
         <app-detail-list  [ricevuta] = "ricevuta" *ngIf="ricevuta!=null"></app-detail-list>
         <div class="row justify-content-end" *ngIf="ricevuta!=null">
 
           <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" style="margin:12px" (click)="SendPDF()" class="col-md-2 float-right" mat-raised-button color="primary" >Send PDF</button>
 
         </div>
-</div>
+<!-- </div> -->
 

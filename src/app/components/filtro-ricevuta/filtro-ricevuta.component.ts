@@ -30,7 +30,7 @@ export class FiltroRicevutaComponent {
   }
 
   RicercaRicevuta(){
-    
+
     if(this.form.valid){
       var filtriRicevuta = new FiltroRicevuta();
       filtriRicevuta.negozio = this.form.get("negozio")?.value;
@@ -44,7 +44,7 @@ export class FiltroRicevutaComponent {
       complete: () => console.info('complete')
   });
     }
-    
+
   }
 
   openDialog(ricevute:string[]): void {
@@ -52,6 +52,7 @@ export class FiltroRicevutaComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed: '+result);
+      if(result != null)
       this.childEvent.emit(result);
 
     });

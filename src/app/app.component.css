@@ -22,21 +22,24 @@
   right: 0;
 }
 
+
 .top{
   top:6vh;
   height: 30vh;
 }
 
-
+hr{
+  border: 1px solid #000000;
+  opacity: 1;
+}
 .bot{
   bottom: 0;
   height: 64vh;
 }
-
-
-.col-md-6 {border-style: solid;}
-.detail {border-style: solid;}
-
+.vl {
+  border-left: 2px solid rgb(0, 0, 0);
+  height: 500px;
+}
 
 /* If you want the content centered horizontally and vertically */
 .centered {
