@@ -1,6 +1,10 @@
-export interface FiltroRicevuta{
-    negozio:string,
-    cassa:string,
-    transazione:string,
-    data:Date
+export class FiltroRicevuta{
+    constructor(
+        public negozio?:string,
+        public cassa?:string,
+        public transazione?:string,
+        public data?:Date){
+
+    }
+    
 }

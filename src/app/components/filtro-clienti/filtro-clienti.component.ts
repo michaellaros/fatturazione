@@ -12,7 +12,7 @@ import { Cliente } from 'src/app/models/cliente';
   styleUrls: ['./filtro-clienti.component.css']
 })
 export class FiltroClientiComponent {
-  filtroCliente!: FiltroCliente;
+
   cliente!:Cliente;
   public form:FormGroup;
   @Output() public childEvent = new EventEmitter<Cliente>();
@@ -26,12 +26,22 @@ constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog
               });
 
 }
-RicercaCliente(form:any){
-  this.httpclient.RicercaCliente(form.value)
-  .subscribe({
-    next: (data) => {this.openDialog(data.clienti)},
-    complete: () => console.info('complete')
-});
+RicercaCliente(){
+  if(this.form.valid){
+    var filtroCliente = new FiltroCliente();
+    
+    filtroCliente.clientSurname = this.form.get("clientSurname")?.value;
+    filtroCliente.clientName = this.form.get("clientName")?.value;
+    filtroCliente.clientAddress = this.form.get("clientAddress")?.value;
+    filtroCliente.birthDate = this.form.get("birthDate")?.value.setHours(this.form.get("birthDate")?.value + 1);
+    
+    console.log(filtroCliente);
+    this.httpclient.RicercaCliente(filtroCliente)
+    .subscribe({
+      next: (data) => {this.openDialog(data.clienti)},
+      complete: () => console.info('complete')
+  });
+  }
 }
 
 openDialog(clienti:Cliente[]): void {

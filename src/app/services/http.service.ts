@@ -6,6 +6,7 @@ import { Ricevuta } from '../models/ricevuta';
 import { Cliente } from '../models/cliente';
 import { MatDialog } from '@angular/material/dialog';
 import { ModaleErroreComponent } from '../components/modale-errore/modale-errore.component';
+import { FiltroCliente } from '../models/filtroCliente';
 
 
 
@@ -31,7 +32,7 @@ export class HttpService {
     return this.http.post<Ricevuta>(this.urlAPI+"Ricevuta/GetRicevuta",{fileName})
                   .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
   }
-  RicercaCliente(filtriCliente:any){
+  RicercaCliente(filtriCliente:FiltroCliente){
     return this.http.post<{clienti:Cliente[]}>(this.urlAPI+"Cliente/",filtriCliente)
                   .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
   }

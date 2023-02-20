@@ -29,9 +29,15 @@ export class FiltroRicevutaComponent {
 
   }
 
-  RicercaRicevuta(form:any){
-    if(form.valid){
-      this.httpclient.RicercaRicevuta(form.value)
+  RicercaRicevuta(){
+    
+    if(this.form.valid){
+      var filtriRicevuta = new FiltroRicevuta();
+      filtriRicevuta.negozio = this.form.get("negozio")?.value;
+      filtriRicevuta.cassa = this.form.get("cassa")?.value;
+      filtriRicevuta.transazione = this.form.get("transazione")?.value;
+      filtriRicevuta.data = this.form.get("data")?.value.setHours(this.form.get("data")?.value + 1);
+      this.httpclient.RicercaRicevuta(filtriRicevuta)
     .subscribe({
       next: (data) => {this.openDialog(data.ricevute)},
       complete: () => console.info('complete')
