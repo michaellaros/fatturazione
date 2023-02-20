@@ -37,6 +37,7 @@ export class FiltroRicevutaComponent {
       filtriRicevuta.cassa = this.form.get("cassa")?.value;
       filtriRicevuta.transazione = this.form.get("transazione")?.value;
       filtriRicevuta.data = this.form.get("data")?.value.setHours(this.form.get("data")?.value + 1);
+      console.log(filtriRicevuta)
       this.httpclient.RicercaRicevuta(filtriRicevuta)
     .subscribe({
       next: (data) => {this.openDialog(data.ricevute)},

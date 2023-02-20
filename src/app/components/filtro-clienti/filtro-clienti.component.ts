@@ -3,7 +3,7 @@ import {FiltroCliente} from 'src/app/models/filtroCliente';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleClientiComponent } from '../modale-clienti/modale-clienti.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CheckboxRequiredValidator, FormBuilder, FormControl, FormGroup, RequiredValidator } from '@angular/forms';
+import { CheckboxRequiredValidator, FormBuilder, FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/models/cliente';
 
 @Component({
@@ -19,8 +19,8 @@ export class FiltroClientiComponent {
 
 constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog: MatDialog){
               this.form = this.fb.group({
-                clientSurname: new FormControl(),
-                clientName: new FormControl(),
+                clientSurname: new FormControl('', [Validators.required]),
+                clientName: new FormControl('', [Validators.required]),
                 birthDate: new FormControl(),
                 clientAdress: new FormControl()
               });
@@ -29,11 +29,12 @@ constructor(private httpclient:HttpService,private fb:FormBuilder,private dialog
 RicercaCliente(){
   if(this.form.valid){
     var filtroCliente = new FiltroCliente();
-    
     filtroCliente.clientSurname = this.form.get("clientSurname")?.value;
     filtroCliente.clientName = this.form.get("clientName")?.value;
-    filtroCliente.clientAddress = this.form.get("clientAddress")?.value;
-    filtroCliente.birthDate = this.form.get("birthDate")?.value.setHours(this.form.get("birthDate")?.value + 1);
+    filtroCliente.clientAddress = this.form.get("clientAddress") ? this.form.get("clientAddress")?.value:"";
+    if(this.form.get("birthDate")?.value!= null){
+      filtroCliente.birthDate =  this.form.get("birthDate")?.value.setHours(this.form.get("birthDate")?.value + 1);
+    }
     
     console.log(filtroCliente);
     this.httpclient.RicercaCliente(filtroCliente)

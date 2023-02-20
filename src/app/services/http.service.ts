@@ -45,14 +45,14 @@ export class HttpService {
   SendPDF(ricevuta:Ricevuta, cliente:Cliente){
     return this.http.post(this.urlAPI+"PDF/SendPDF",{cliente,ricevuta},{responseType: 'blob' as 'json'})
                   .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
-                  .subscribe(data => this.DownloadPDF(data))
+                  .subscribe(data => this.DownloadPDF(data,cliente.clientSurname+cliente.clientName+ricevuta.nome_ricevuta))
           
   }
 
   getPDF(){
     return this.http.get(this.urlAPI+"PDF",{responseType: 'blob' as 'json'})
                   .pipe(catchError((error:HttpErrorResponse) => this.ErrorHandler(error)))
-                  .subscribe(data => this.DownloadPDF(data))
+                  .subscribe(data => this.DownloadPDF(data,"file"))
           
   }
 
@@ -69,14 +69,14 @@ export class HttpService {
 
   }
 
-  DownloadPDF(data:any) {
+  DownloadPDF(data:any,fileName:string) {
 
     let blob = new Blob([data], {type: 'application/pdf'});
   
     var downloadURL = window.URL.createObjectURL(data);
     var link = document.createElement('a');
     link.href = downloadURL;
-    link.download = "help.pdf";
+    link.download = fileName+".pdf";
     link.click();
   
   }
