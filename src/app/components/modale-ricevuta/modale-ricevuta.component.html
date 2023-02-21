@@ -1,13 +1,12 @@
 <h1 mat-dialog-title>Selezionare la ricevuta desiderata:</h1>
 <div mat-dialog-content>
-    <mat-selection-list #ricevuteList [multiple]="false">
-      <mat-list-option *ngFor="let ricevuta of ricevute" [value]="ricevuta.nomeFile">
-        <mat-icon matListItemIcon>note</mat-icon>
-        <span matListItemTitle>Transazione: {{ricevuta.nomeFile!.split("_")[2]}}</span>
-        <span matListItemLine>Totale: {{ricevuta.prezzoTotale}} | Data transazione: {{getDataTransazione(ricevuta.nomeFile!)}}</span>
-        
-      </mat-list-option>
-    </mat-selection-list>
+  <mat-selection-list #ricevuteList [multiple]="false">
+    <mat-list-option *ngFor="let ricevuta of ricevute" [value]="ricevuta.nomeFile">
+      <mat-icon matListItemIcon>note</mat-icon>
+      <span matListItemTitle>Transazione: {{ricevuta.nomeFile!.split("_")[2]}}</span>
+      <span matListItemLine>Totale: {{ricevuta.prezzoTotale}} | Data transazione: {{getDataTransazione(ricevuta.nomeFile!)}}</span>
+    </mat-list-option>
+  </mat-selection-list>
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="ricevuteList.selectedOptions.hasValue() ? ricevuteList.selectedOptions.selected[0].value : null">conferma</button>

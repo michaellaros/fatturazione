@@ -7,32 +7,32 @@
     </button>
 </mat-toolbar>
 
-<div class="container-fluid">
-
-    <div class="row" >
-
-
-
+<div class="container-fluid "[style.display] = "toDisplay ? 'block' : 'none'">
+  <div class="row" >
+    <div class=" col-md-6 border-end border-bottom pt-3" >
+        <app-filtro-ricevuta (childEvent)="SetRicevuta($event)"></app-filtro-ricevuta>
     </div>
-    <div *ngIf = "toDisplay">
-      <div class="row" >
-        <div class=" col-md-6 border-end border-bottom" >
-            <app-filtro-ricevuta (childEvent)="SetRicevuta($event)" class="container"></app-filtro-ricevuta>
-        </div>
-
-      <div class=" col-md-6  border-bottom">
-        <app-filtro-clienti (childEvent)="cliente = $event" class="container"></app-filtro-clienti>
-      </div>
+    <div class=" col-md-6  border-bottom pt-3">
+      <app-filtro-clienti (childEvent)="cliente = $event"></app-filtro-clienti>
     </div>
-
-  </div>
-      <div class="">
-        <app-detail-list  [ricevuta] = "ricevuta" *ngIf="ricevuta!=null" class="container"></app-detail-list>
-      </div>
-
-  <div class="row justify-content-end" *ngIf="ricevuta!=null">
-    <div class="col-md-2">
-    <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" (click)="SendPDF()" class="col-md-12" mat-raised-button color="primary" >Send PDF</button>
-  </div>
   </div>
 </div>
+<div *ngIf="ricevuta!=null">
+  <mat-toolbar color="secondary" class="col-md-12">
+    <div class = "container"> <h1 class="mb-1">Ricevuta</h1></div>
+    <div class = "container"> <h1 class="mb-1 ms-4">Riepilogo IVA</h1></div>
+  </mat-toolbar>
+  
+  <div class="container-fluid mt-3">
+    <div class="col-md-12">
+      <app-detail-list  [ricevuta] = "ricevuta" ></app-detail-list>
+    </div>
+    <div class="row justify-content-end mt-3">
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" (click)="SendPDF()" class="col-md-12" mat-raised-button color="primary" >Send PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
