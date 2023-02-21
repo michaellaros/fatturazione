@@ -1,7 +1,7 @@
 <mat-toolbar color="primary"><span style="font-size: 200%;">Fatturazione</span></mat-toolbar>
 <mat-toolbar color="secondary" class="col-md-12">
-  <div class = "container"> <h1 class="mb-1 ">Scontrino</h1></div>
-  <div class = "container"> <h1 class="mb-1 ms-4">Destinatario</h1></div>
+  <div class = "col-md-6"> <h1 class="mb-1 ">Scontrino</h1></div>
+  <div class = "col-md-6"> <h1 class="mb-1 ms-3">Destinatario</h1></div>
     <button mat-icon-button matTooltip="Primary " color="primary" type="submit" class="btn btn-primary ms-auto" (click)="toggleData(); rotate()">
       <mat-icon [@rotatedState]='state'>expand_more</mat-icon>
     </button>
@@ -17,9 +17,9 @@
     </div>
   </div>
 </div>
-<div *ngIf="ricevuta!=null">
+<!-- <div *ngIf="ricevuta!=null"> -->
   <mat-toolbar color="secondary" class="col-md-12">
-    <div class = "container"> <h1 class="mb-1">Ricevuta</h1></div>
+    <div class = " col-md-6"> <h1 class="mb-1">Ricevuta</h1></div>
     <div class = "container"> <h1 class="mb-1 ms-1">Riepilogo IVA</h1></div>
   </mat-toolbar>
 
@@ -32,7 +32,7 @@
         <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" (click)="SendPDF()" class="col-md-12" mat-raised-button color="primary" >Send PDF</button>
       </div>
     </div>
-  </div>
-</div>
+  <!-- </div>
+</div> -->
 
 
