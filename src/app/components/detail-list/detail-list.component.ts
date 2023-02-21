@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./detail-list.component.css']
 })
 export class DetailListComponent {
-  columnsRicevuta: string[] = ["Codice", "Descrizione", "Prezzo", "IVA"];
+  columnsRicevuta: string[] = ["Codice", "Descrizione", "Prezzo","Quantita","PrezzoTot", "IVA"];
   columnsIVA: string[] = ["Codice", "Prezzo"];
   @Input() ricevuta! : Ricevuta;
 

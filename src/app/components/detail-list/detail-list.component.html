@@ -23,6 +23,16 @@
         <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="Quantita">
+        <th mat-header-cell *matHeaderCellDef> Quantità </th>
+        <td mat-cell *matCellDef="let articolo"> {{articolo.quantita}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="PrezzoTot">
+        <th mat-header-cell *matHeaderCellDef> Prezzo totale </th>
+        <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo_totale_articolo}} </td>
+      </ng-container>
+
       <!-- Symbol Column -->
       <ng-container matColumnDef="IVA">
         <th mat-header-cell *matHeaderCellDef> IVA </th>
