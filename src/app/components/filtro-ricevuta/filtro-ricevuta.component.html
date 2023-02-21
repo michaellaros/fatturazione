@@ -2,28 +2,28 @@
         <div class="col-sm-6">
             <form [formGroup]="form" id="form" (ngSubmit)="RicercaRicevuta()">
             <div class="row">
-                <mat-form-field appearance="fill">
+                <mat-form-field class="ms-3" appearance="fill">
                     <mat-label>Negozio</mat-label>
                     <input matInput formControlName="negozio">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field appearance="fill">
+                <mat-form-field class="ms-3" appearance="fill">
                     <mat-label>Cassa</mat-label>
                     <input matInput formControlName="cassa">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field appearance="fill">
+                <mat-form-field class="ms-3" appearance="fill">
                     <mat-label>Transazione</mat-label>
                     <input matInput  formControlName="transazione">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field appearance="fill">
+                <mat-form-field class="ms-3" appearance="fill">
                     <mat-label>Data transazione</mat-label>
                     <input matInput  [matDatepicker]="picker" formControlName="data">
                     <mat-hint>MM/DD/YYYY</mat-hint>
@@ -32,10 +32,10 @@
                 </mat-form-field>
             </div>
 
-            <button mat-fab  color="primary" class="m-2" type="reset" >
+            <button mat-fab  color="primary" class="m-2 ms-3" type="reset" >
                 <mat-icon >delete</mat-icon>
               </button>
-              <button mat-fab  color="primary" class="m-2" type="submit" >
+              <button mat-fab  color="primary" class="m-2 " type="submit" >
                 <mat-icon>search</mat-icon>
               </button>
             </form>
