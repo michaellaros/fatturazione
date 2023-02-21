@@ -2,11 +2,21 @@ import { Component } from '@angular/core';
 import { Cliente } from './models/cliente';
 import { Ricevuta } from './models/ricevuta';
 import { HttpService } from './services/http.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    // Each unique animation requires its own trigger. The first argument of the trigger function is the name
+    trigger('rotatedState', [
+      state('default', style({ transform: 'rotate(0)' })),
+      state('rotated', style({ transform: 'rotate(-180deg)' })),
+      transition('rotated => default', animate('400ms ease-out')),
+      transition('default => rotated', animate('400ms ease-in'))
+    ])
+    ]
 })
 export class AppComponent {
   public ricevutaSelezionata:string|null = null;
@@ -14,14 +24,26 @@ export class AppComponent {
   public clienteSelezionato:string|null = null;
   public cliente!:Cliente;
 
-constructor(private http:HttpService){
+  constructor(private http:HttpService){
 
-}
+  }
+
+  state: string = 'default';
+    rotate() {
+        this.state = (this.state === 'default' ? 'rotated' : 'default');
+    }
+
+
+  toDisplay = true;
+
+  toggleData() {
+    this.toDisplay = !this.toDisplay;
+  }
 
   SendPDF(){
     console.log(this.ricevuta,this.cliente);
     this.http.SendPDF(this.ricevuta,this.cliente);
-    
+
   }
 
   SetRicevuta(filename:string ){
