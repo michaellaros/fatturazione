@@ -4,28 +4,28 @@
             <div class="row">
                 <mat-form-field appearance="fill">
                     <mat-label>Negozio</mat-label>
-                    <input matInput class="m-2" formControlName="negozio">
+                    <input matInput formControlName="negozio">
                 </mat-form-field>
             </div>
 
             <div class="row">
                 <mat-form-field appearance="fill">
                     <mat-label>Cassa</mat-label>
-                    <input matInput class="m-2" formControlName="cassa">
+                    <input matInput formControlName="cassa">
                 </mat-form-field>
             </div>
 
             <div class="row">
                 <mat-form-field appearance="fill">
                     <mat-label>Transazione</mat-label>
-                    <input matInput class="m-2" formControlName="transazione">
+                    <input matInput formControlName="transazione">
                 </mat-form-field>
             </div>
 
             <div class="row">
                 <mat-form-field appearance="fill">
                     <mat-label>Data transazione</mat-label>
-                    <input matInput  [matDatepicker]="picker" class="m-2" formControlName="data">
+                    <input matInput [matDatepicker]="picker"  formControlName="data">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker  #picker></mat-datepicker>

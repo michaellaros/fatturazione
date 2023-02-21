@@ -2,28 +2,28 @@
     <div class="col-md-6">
       <form [formGroup]="form" id="form" (ngSubmit)="RicercaCliente()">
         <div class="row">
-          <mat-form-field appearance="fill">
+          <mat-form-field  appearance="fill">
               <mat-label>Cognome</mat-label>
-              <input matInput class="m-2" formControlName="clientSurname" >
+              <input matInput  formControlName="clientSurname" >
           </mat-form-field>
         </div>
 
         <div class="row">
-          <mat-form-field appearance="fill">
+          <mat-form-field  appearance="fill" >
               <mat-label>Nome</mat-label>
-              <input matInput class="m-2" formControlName="clientName" >
+              <input matInput  formControlName="clientName" >
           </mat-form-field>
         </div>
         <div class="row">
-          <mat-form-field appearance="fill">
+          <mat-form-field  appearance="fill">
             <mat-label>Indirizzo</mat-label>
-            <input matInput class="m-2" formControlName="clientAdress" >
+            <input matInput  formControlName="clientAdress" >
           </mat-form-field>
         </div>
         <div class="row">
-          <mat-form-field appearance="fill">
+          <mat-form-field  appearance="fill">
             <mat-label>Data di nascita</mat-label>
-            <input matInput class="m-2"  [matDatepicker]="picker" formControlName="birthDate">
+            <input matInput   [matDatepicker]="picker" formControlName="birthDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
@@ -31,10 +31,10 @@
 
         </div>
 
-        <button mat-fab  color="primary" class="m-2" type="reset" >
+        <button mat-fab class="m-2" color="primary"  type="reset" >
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-fab  color="primary" class="m-2" type="submit" >
+        <button mat-fab class="m-2" color="primary"  type="submit" >
           <mat-icon>search</mat-icon>
         </button>
 
