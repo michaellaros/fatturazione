@@ -33,7 +33,9 @@ RicercaCliente(){
     filtroCliente.clientName = this.form.get("clientName")?.value;
     filtroCliente.clientAddress = this.form.get("clientAddress") ? this.form.get("clientAddress")?.value:"";
     if(this.form.get("birthDate")?.value!= null){
-      filtroCliente.birthDate =  this.form.get("birthDate")?.value.setHours(this.form.get("birthDate")?.value + 1);
+      var dt = new Date(this.form.get("birthDate")?.value);
+      dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+      filtroCliente.birthDate =  dt;
     }
     
     console.log(filtroCliente);

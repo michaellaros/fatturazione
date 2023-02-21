@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FiltroRicevuta } from 'src/app/models/filtroRicevuta';
+import { RicevutaSelect } from 'src/app/models/ricevutaSelect';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleRicevutaComponent } from '../modale-ricevuta/modale-ricevuta.component';
 
@@ -36,7 +37,12 @@ export class FiltroRicevutaComponent {
       filtriRicevuta.negozio = this.form.get("negozio")?.value;
       filtriRicevuta.cassa = this.form.get("cassa")?.value;
       filtriRicevuta.transazione = this.form.get("transazione")?.value;
-      filtriRicevuta.data = this.form.get("data")?.value.setHours(this.form.get("data")?.value + 1);
+  
+      if(this.form.get("data")?.value!= null){
+        var dt = new Date(this.form.get("data")?.value);
+        dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
+        filtriRicevuta.data =  dt;
+      }
       console.log(filtriRicevuta)
       this.httpclient.RicercaRicevuta(filtriRicevuta)
     .subscribe({
@@ -47,7 +53,7 @@ export class FiltroRicevutaComponent {
 
   }
 
-  openDialog(ricevute:string[]): void {
+  openDialog(ricevute:RicevutaSelect[]): void {
     const dialogRef = this.dialog.open(ModaleRicevutaComponent, {data:ricevute
     });
     dialogRef.afterClosed().subscribe(result => {
