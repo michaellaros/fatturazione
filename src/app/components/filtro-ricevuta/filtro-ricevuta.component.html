@@ -1,47 +1,45 @@
 <div class="row">
-        <div class="col-sm-6">
-            <form [formGroup]="form" id="form" (ngSubmit)="RicercaRicevuta()">
+    <div class="col-md-6">
+        <form [formGroup]="form" id="form" (ngSubmit)="RicercaRicevuta()">
             <div class="row">
-                <mat-form-field class="ms-3" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Negozio</mat-label>
-                    <input matInput formControlName="negozio">
+                    <input matInput class="m-2" formControlName="negozio">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field class="ms-3" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Cassa</mat-label>
-                    <input matInput formControlName="cassa">
+                    <input matInput class="m-2" formControlName="cassa">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field class="ms-3" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Transazione</mat-label>
-                    <input matInput  formControlName="transazione">
+                    <input matInput class="m-2" formControlName="transazione">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field class="ms-3" appearance="fill">
+                <mat-form-field appearance="fill">
                     <mat-label>Data transazione</mat-label>
-                    <input matInput  [matDatepicker]="picker" formControlName="data">
+                    <input matInput  [matDatepicker]="picker" class="m-2" formControlName="data">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker  #picker></mat-datepicker>
                 </mat-form-field>
             </div>
 
-            <button mat-fab  color="primary" class="m-2 ms-3" type="reset" >
+            <button mat-fab  color="primary" class="m-2" type="reset" >
                 <mat-icon >delete</mat-icon>
-              </button>
-              <button mat-fab  color="primary" class="m-2 " type="submit" >
+                </button>
+                <button mat-fab  color="primary" class="m-2" type="submit" >
                 <mat-icon>search</mat-icon>
-              </button>
-            </form>
-        </div>
-
-
+            </button>
+        </form>
+    </div>
 </div>
 
 
