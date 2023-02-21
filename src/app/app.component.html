@@ -1,19 +1,22 @@
-<div>
-  <mat-toolbar color="primary"><span class="centro" style="font-size: 200%;">Fatturazione</span></mat-toolbar>
+<mat-toolbar color="primary"><span style="font-size: 200%;">Fatturazione</span></mat-toolbar>
+<mat-toolbar color="secondary" class="col-md-12">
+  <div class = "container"> <h1 class="mb-1">Scontrino</h1></div>
+  <div class = "container"> <h1 class="mb-1 ms-4">Destinatario</h1></div>
+    <button mat-icon-button matTooltip="Primary " color="primary" type="submit" class="btn btn-primary ms-auto" (click)="toggleData(); rotate()">
+      <mat-icon [@rotatedState]='state'>expand_more</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="container-fluid">
+
     <div class="row" >
-      <div class=" col-md-12">
-      <mat-toolbar color="secondary">
-        <div class = "container"> <h1 class="mb-1">Scontrino</h1></div>
-        <div class = "container"> <h1 class="mb-1 ms-4">Destinatario</h1></div>
-          <button mat-icon-button matTooltip="Primary " color="primary" type="submit" class="btn btn-primary ms-auto" (click)="toggleData(); rotate()">
-            <mat-icon [@rotatedState]='state'>expand_more</mat-icon>
-          </button>
-      </mat-toolbar>
+
+
+
     </div>
-  </div>
     <div *ngIf = "toDisplay">
       <div class="row" >
-        <div class=" col-md-6 border-end border-bottom container" >
+        <div class=" col-md-6 border-end border-bottom" >
             <app-filtro-ricevuta (childEvent)="SetRicevuta($event)" class="container"></app-filtro-ricevuta>
         </div>
 
@@ -23,10 +26,13 @@
     </div>
 
   </div>
-      <div>
+      <div class="">
         <app-detail-list  [ricevuta] = "ricevuta" *ngIf="ricevuta!=null" class="container"></app-detail-list>
       </div>
-  <div class="row justify-content-end" *ngIf="ricevuta!=null">
-    <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" style="margin:12px" (click)="SendPDF()" class="col-md-2 float-right" mat-raised-button color="primary" >Send PDF</button>
-  </div>
 
+  <div class="row justify-content-end" *ngIf="ricevuta!=null">
+    <div class="col-md-2">
+    <button type="submit" class="btn btn-primary"  [disabled]="cliente == null" (click)="SendPDF()" class="col-md-12" mat-raised-button color="primary" >Send PDF</button>
+  </div>
+  </div>
+</div>

@@ -28,18 +28,18 @@
   height: 30vh;
 }
 
-hr{
+/* hr{
   border: 1px solid #000000;
   opacity: 1;
-}
+} */
 .bot{
   bottom: 0;
   height: 64vh;
 }
-.vl {
+/* .vl {
   border-left: 2px solid rgb(0, 0, 0);
   height: 500px;
-}
+} */
 
 /* If you want the content centered horizontally and vertically */
 .centered {
