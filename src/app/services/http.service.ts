@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -17,9 +17,12 @@ import { RicevutaSelect } from '../models/ricevutaSelect';
 })
 export class HttpService {
 
-  public urlAPI:string = "http://localhost:56209/api/";
+  urlAPI:string;
 
-  constructor(private http:HttpClient, private dialog: MatDialog) { }
+  constructor(private http:HttpClient, private dialog: MatDialog, @Inject('BASE_URL') baseUrl: string) 
+  {
+    this.urlAPI = baseUrl+"/FattureAPI/api/";
+   }
 
   GetDati(): Observable<string>{
     return this.http.get(this.urlAPI, { responseType: 'text' });
