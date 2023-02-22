@@ -11,7 +11,7 @@ import { environment } from './environments/environment';
 
 export const getBaseUrl = () => {
   if (isDevMode()) {
-    return 'http://localhost';
+    return 'http://localhost:56209';
   } else {
     const url = document.getElementsByTagName('base')[0].href;
     const arr = url.split('/');
