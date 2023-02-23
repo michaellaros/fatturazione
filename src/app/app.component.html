@@ -1,10 +1,10 @@
 <mat-toolbar color="primary"><span style="font-size: 200%;">Fatturazione</span></mat-toolbar>
 <mat-toolbar color="secondary" class="col-md-12">
   <div class = "col-md-6"> <h1 class="mb-1 ">Scontrino</h1></div>
-  <div class = "col-md-6"> <h1 class="mb-1 ms-3">Destinatario</h1></div>
-    <button mat-icon-button matTooltip="Primary " color="primary" type="submit" class="btn btn-primary ms-auto" (click)="toggleData(); rotate()">
-      <mat-icon [@rotatedState]='state'>expand_more</mat-icon>
-    </button>
+  <div class = "col-md-5"> <h1 class="mb-1 ms-3">Destinatario</h1></div>
+  <button mat-icon-button matTooltip="Primary " color="primary" type="submit" class="btn btn-primary ms-auto col-md-1" (click)="toggleData(); rotate()">
+    <mat-icon [@rotatedState]='state'>expand_less</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div class="container-fluid "[style.display] = "toDisplay ? 'block' : 'none'">

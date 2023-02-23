@@ -21,7 +21,7 @@ export class HttpService {
 
   constructor(private http:HttpClient, private dialog: MatDialog, @Inject('BASE_URL') baseUrl: string) 
   {
-    this.urlAPI = baseUrl+"/FattureAPI/";
+    this.urlAPI = baseUrl+"/";
    }
 
   GetDati(): Observable<string>{

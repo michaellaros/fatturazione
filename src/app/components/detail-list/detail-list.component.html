@@ -17,7 +17,7 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="Prezzo">
         <th mat-header-cell *matHeaderCellDef> Prezzo </th>
-        <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo}} </td>
+        <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo}} € </td>
       </ng-container>
 
       <ng-container matColumnDef="Quantita">
@@ -27,13 +27,13 @@
 
       <ng-container matColumnDef="PrezzoTot">
         <th mat-header-cell *matHeaderCellDef> Prezzo totale </th>
-        <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo_totale_articolo}} </td>
+        <td mat-cell *matCellDef="let articolo"> {{articolo.prezzo_totale_articolo}} € </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="IVA">
         <th mat-header-cell *matHeaderCellDef> IVA </th>
-        <td mat-cell *matCellDef="let articolo"> {{articolo.flg_isDiscount ? "-": articolo.ivaArticolo.ivaPrice}} </td>
+        <td mat-cell *matCellDef="let articolo"> {{articolo.flg_isDiscount ? "-": articolo.ivaArticolo.ivaPrice + " €"}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columnsRicevuta"></tr>
@@ -52,7 +52,7 @@
 
       <ng-container matColumnDef="Prezzo">
         <th mat-header-cell *matHeaderCellDef> Prezzo </th>
-        <td mat-cell *matCellDef="let iva"> {{iva.ivaPrice}} </td>
+        <td mat-cell *matCellDef="let iva"> {{iva.ivaPrice}} € </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columnsIVA"></tr>
