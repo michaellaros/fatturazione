@@ -1,3 +1,7 @@
 /* .row{
   border-style: solid;
 } */
+
+.table-container {
+  padding: 0;
+}
