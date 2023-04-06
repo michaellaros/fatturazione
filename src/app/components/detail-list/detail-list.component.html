@@ -1,7 +1,12 @@
 <div class="row" *ngIf="ricevuta != null">
   <div class="col-lg-12 table-container">
     <mat-toolbar color="secondary" class="col-sm-12">
-      <div class="col-lg-12"><h1 class="mb-1">Ricevuta</h1></div>
+      <div class="col-lg-6"><h1 class="mb-1">Scontrino</h1></div>
+      <div class="col-lg-6">
+        <p class="mb-1 text-end">
+          Totale: {{ this.ricevuta.prezzo_totale | number : "1.2-2" }} €
+        </p>
+      </div>
     </mat-toolbar>
     <div class="container mt-3 p-2">
       <table

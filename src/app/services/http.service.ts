@@ -64,7 +64,7 @@ export class HttpService {
       .subscribe((data) =>
         this.DownloadPDF(
           data,
-          cliente.clientSurname + cliente.clientName + ricevuta.nome_ricevuta
+          cliente.surname! + cliente.name! + ricevuta.nome_ricevuta
         )
       );
   }
