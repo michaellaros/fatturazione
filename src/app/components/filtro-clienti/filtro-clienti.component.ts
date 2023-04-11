@@ -69,6 +69,7 @@ export class FiltroClientiComponent {
   }
 
   openDialog(clienti: Cliente[]): void {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(ModaleClientiComponent, {
       data: clienti,
     });

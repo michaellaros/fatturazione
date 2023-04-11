@@ -3,10 +3,7 @@
   <mat-selection-list #ClientiList [multiple]="false">
     <mat-list-option *ngFor="let cliente of clienti" [value]="cliente">
       <span matListItemTitle>{{ cliente.business_name }} </span>
-      <span matListItemLine>{{
-        cliente.surname + " " + cliente.name + ", " + cliente.email
-      }}</span>
-      {{ cliente.surname + " " + cliente.name + ", " + cliente.business_name }}
+      <span matListItemLine>{{ cliente.cf_piva + ", " + cliente.email }}</span>
     </mat-list-option>
   </mat-selection-list>
 </div>

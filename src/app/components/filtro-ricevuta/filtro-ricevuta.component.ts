@@ -58,6 +58,7 @@ export class FiltroRicevutaComponent {
   }
 
   openDialog(ricevute: RicevutaSelect[]): void {
+    this.dialog.closeAll();
     const dialogRef = this.dialog.open(ModaleRicevutaComponent, {
       data: ricevute,
     });
