@@ -2,11 +2,15 @@
 <div mat-dialog-content>
   <mat-selection-list #ClientiList [multiple]="false">
     <mat-list-option *ngFor="let cliente of clienti" [value]="cliente">
-      {{ cliente.surname + " " + cliente.name + ", " + cliente.address }}
+      <span matListItemTitle>{{ cliente.business_name }} </span>
+      <span matListItemLine>{{
+        cliente.surname + " " + cliente.name + ", " + cliente.email
+      }}</span>
+      {{ cliente.surname + " " + cliente.name + ", " + cliente.business_name }}
     </mat-list-option>
   </mat-selection-list>
 </div>
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
   <button
     mat-button
     [mat-dialog-close]="
@@ -17,4 +21,4 @@
   >
     conferma
   </button>
-</div>
+</mat-dialog-actions>

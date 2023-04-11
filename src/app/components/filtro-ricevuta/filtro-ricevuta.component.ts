@@ -51,11 +51,8 @@ export class FiltroRicevutaComponent {
         filtriRicevuta.data = dt;
       }
       console.log(filtriRicevuta);
-      this.httpclient.RicercaRicevuta(filtriRicevuta).subscribe({
-        next: (data) => {
-          this.openDialog(data.ricevute);
-        },
-        complete: () => console.info('complete'),
+      this.httpclient.RicercaRicevuta(filtriRicevuta).subscribe((data) => {
+        this.openDialog(data.ricevute);
       });
     }
   }
@@ -65,7 +62,6 @@ export class FiltroRicevutaComponent {
       data: ricevute,
     });
     dialogRef.afterClosed().subscribe((result: string) => {
-      console.log('The dialog was closed: ' + result);
       if (result != null) {
         let nomeFileSplit = result.split('\\');
         nomeFileSplit = nomeFileSplit[nomeFileSplit.length - 1].split('_');
