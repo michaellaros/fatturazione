@@ -28,10 +28,7 @@ export class FiltroClientiComponent {
     private dialog: MatDialog
   ) {
     this.form = this.fb.group({
-      business_name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      business_name: new FormControl('', [Validators.required]),
       cf_piva: new FormControl(),
       surname: new FormControl(),
       name: new FormControl(),
@@ -74,15 +71,17 @@ export class FiltroClientiComponent {
       data: clienti,
     });
     dialogRef.afterClosed().subscribe((result: Cliente) => {
-      this.form.patchValue({
-        business_name: result.business_name,
-        cf_piva: result.cf_piva,
-        surname: result.surname,
-        name: result.name,
-        email: result.email,
-      });
+      if (result != null) {
+        this.form.patchValue({
+          business_name: result.business_name,
+          cf_piva: result.cf_piva,
+          surname: result.surname,
+          name: result.name,
+          email: result.email,
+        });
 
-      this.childEvent.emit(result);
+        this.childEvent.emit(result);
+      }
     });
   }
 }
