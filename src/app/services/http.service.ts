@@ -53,19 +53,16 @@ export class HttpService {
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
   }
 
-  SendPDF(ricevuta: Ricevuta, cliente: Cliente) {
+  SendPDF(receiptName: string, cliente: Cliente) {
     return this.http
       .post(
         this.urlAPI + 'PDF/SendPDF',
-        { cliente, ricevuta },
+        { client_id: cliente.id, receiptName },
         { responseType: 'blob' as 'json' }
       )
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)))
       .subscribe((data) =>
-        this.DownloadPDF(
-          data,
-          cliente.surname! + cliente.name! + ricevuta.nome_ricevuta
-        )
+        this.DownloadPDF(data, cliente.business_name + receiptName)
       );
   }
 
