@@ -25,28 +25,19 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" />
       </mat-form-field>
-
-      <!-- <mat-form-field appearance="fill" class="col-6">
-        <mat-label>Data di nascita</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="birthday" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field> -->
-
-      <!-- <mat-form-field appearance="fill" class="col-6">
-        <mat-label>Indirizzo</mat-label>
-        <input matInput formControlName="address" />
-      </mat-form-field> -->
     </div>
-    <div>
+    <div class="d-flex">
       <button mat-fab class="m-2" color="primary" type="reset">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-fab class="m-2" color="primary" type="submit">
+      <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+      <button
+        mat-fab
+        class="m-2"
+        *ngIf="!loading"
+        color="primary"
+        type="submit"
+      >
         <mat-icon>search</mat-icon>
       </button>
     </div>

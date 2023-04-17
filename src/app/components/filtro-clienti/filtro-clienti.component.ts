@@ -4,11 +4,9 @@ import { HttpService } from 'src/app/services/http.service';
 import { ModaleClientiComponent } from '../modale-clienti/modale-clienti.component';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  CheckboxRequiredValidator,
   FormBuilder,
   FormControl,
   FormGroup,
-  RequiredValidator,
   Validators,
 } from '@angular/forms';
 import { Cliente } from 'src/app/models/cliente';
@@ -21,6 +19,7 @@ import { Cliente } from 'src/app/models/cliente';
 export class FiltroClientiComponent {
   public form: FormGroup;
   @Output() public childEvent = new EventEmitter<Cliente>();
+  public loading: boolean = false;
 
   constructor(
     private httpclient: HttpService,
@@ -56,11 +55,13 @@ export class FiltroClientiComponent {
       // }
 
       console.log(filtroCliente);
+      this.loading = true;
       this.httpclient.RicercaCliente(filtroCliente).subscribe({
         next: (data) => {
           this.openDialog(data.clienti);
         },
-        complete: () => console.info('complete'),
+        complete: () => (this.loading = false),
+        error: () => (this.loading = false),
       });
     }
   }

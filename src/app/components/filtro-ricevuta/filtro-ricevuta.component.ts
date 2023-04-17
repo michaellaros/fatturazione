@@ -23,6 +23,7 @@ export class FiltroRicevutaComponent {
   public ricevutaSelezionata: string | null = null;
   public ricevuteTrovate: string[] = [];
   public form: FormGroup;
+  public loading: boolean = false;
   @Output() public childEvent = new EventEmitter<string>();
 
   public constructor(
@@ -51,8 +52,13 @@ export class FiltroRicevutaComponent {
         filtriRicevuta.data = dt;
       }
       console.log(filtriRicevuta);
-      this.httpclient.RicercaRicevuta(filtriRicevuta).subscribe((data) => {
-        this.openDialog(data.ricevute);
+      this.loading = true;
+      this.httpclient.RicercaRicevuta(filtriRicevuta).subscribe({
+        next: (data) => {
+          this.openDialog(data.ricevute);
+        },
+        complete: () => (this.loading = false),
+        error: () => (this.loading = false),
       });
     }
   }

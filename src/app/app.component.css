@@ -1,5 +1,5 @@
-.header{
-  top:0;
+.header {
+  top: 0;
   left: 0;
   height: 6vh;
   width: 100%;
@@ -15,16 +15,13 @@
   left: 0;
 }
 
-
-
 /* Control the right side */
 .right {
   right: 0;
 }
 
-
-.top{
-  top:6vh;
+.top {
+  top: 6vh;
   height: 30vh;
 }
 
@@ -32,7 +29,7 @@
   border: 1px solid #000000;
   opacity: 1;
 } */
-.bot{
+.bot {
   bottom: 0;
   height: 64vh;
 }
@@ -49,4 +46,3 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-

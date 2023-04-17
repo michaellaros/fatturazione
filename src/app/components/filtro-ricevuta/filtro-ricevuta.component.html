@@ -1,4 +1,4 @@
-<div class="row h-100 position-relative">
+<div class="row position-relative h-100">
   <form [formGroup]="form" id="form" (ngSubmit)="RicercaRicevuta()">
     <div class="row">
       <mat-form-field appearance="fill" class="col-6">
@@ -27,13 +27,20 @@
         <input matInput formControlName="transazione" />
       </mat-form-field>
     </div>
-    <div class="position-absolute bottom-0 start-0">
+    <div class="d-flex position-absolute bottom-0 left-0">
       <button mat-fab color="primary" class="m-2" type="reset">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-fab color="primary" class="m-2" type="submit">
+      <button
+        mat-fab
+        color="primary"
+        class="m-2 align-self-baseline"
+        *ngIf="!loading"
+        type="submit"
+      >
         <mat-icon>search</mat-icon>
       </button>
+      <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
     </div>
   </form>
 </div>
