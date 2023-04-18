@@ -64,7 +64,7 @@
         <ng-container matColumnDef="CodIva">
           <th mat-header-cell *matHeaderCellDef>Cod.IVA</th>
           <td mat-cell *matCellDef="let articolo">
-            {{ this.GetCodIva(articolo.ivaArticolo) }}
+            {{ articolo.ivaArticolo.groupId }}
           </td>
         </ng-container>
 
@@ -97,7 +97,7 @@
       >
         <ng-container matColumnDef="CodIva">
           <th mat-header-cell *matHeaderCellDef>Cod.IVA</th>
-          <td mat-cell *matCellDef="let iva">{{ this.GetCodIva(iva) }}</td>
+          <td mat-cell *matCellDef="let iva">{{ iva.groupId }}</td>
         </ng-container>
 
         <ng-container matColumnDef="Aliquota">

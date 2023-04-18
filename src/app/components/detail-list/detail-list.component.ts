@@ -28,13 +28,4 @@ export class DetailListComponent {
   @Input() ricevuta!: Ricevuta;
 
   constructor(private httpTest: HttpService) {}
-
-  public GetCodIva(iva: Iva) {
-    console.log(iva);
-    return (
-      this.ricevuta.riepilogoIva.findIndex(
-        (x) => x.ivaGroup! === iva.ivaGroup!
-      ) + 1
-    );
-  }
 }

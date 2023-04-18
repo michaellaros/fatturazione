@@ -3,6 +3,7 @@ export class Iva {
     public ivaGroup?: string,
     public ivaPercent?: number,
     public articlePrice?: number,
-    public ivaPrice?: number
+    public ivaPrice?: number,
+    public groupId?: number
   ) {}
 }
