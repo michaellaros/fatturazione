@@ -1,15 +1,31 @@
-<h1 mat-dialog-title>Selezionare la ricevuta desiderata:</h1>
+<h1 mat-dialog-title>Selezionare lo scontrino desiderato:</h1>
 <div mat-dialog-content>
   <mat-selection-list #ClientiList [multiple]="false">
     <mat-list-option *ngFor="let cliente of clienti" [value]="cliente">
-      <span matListItemTitle>{{ cliente.business_name }} </span>
-      <span matListItemLine>{{ cliente.cf_piva + ", " + cliente.email }}</span>
+      <span matListItemTitle
+        >{{
+          cliente.business_name != null && cliente.business_name != ""
+            ? cliente.business_name
+            : cliente.surname + " " + cliente.name
+        }}
+      </span>
+      <span matListItemLine>{{
+        (cliente.piva != null
+          ? cliente.piva
+          : cliente.passport_number != null
+          ? cliente.passport_number
+          : cliente.cf) +
+          (cliente.email != null && cliente.email != ""
+            ? ", " + cliente.email
+            : "")
+      }}</span>
     </mat-list-option>
   </mat-selection-list>
 </div>
 <mat-dialog-actions align="end">
   <button
-    mat-button
+    mat-raised-button
+    color="primary"
     [mat-dialog-close]="
       ClientiList.selectedOptions.hasValue()
         ? ClientiList.selectedOptions.selected[0].value

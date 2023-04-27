@@ -1,0 +1,49 @@
+<mat-toolbar color="secondary" class="col-sm-12">
+  <div class="col-sm-6"><h1 class="mb-1">Scontrino</h1></div>
+  <div class="col-sm-5"><h1 class="mb-1 ms-3">Destinatario</h1></div>
+  <button
+    mat-icon-button
+    matTooltip="Primary "
+    color="primary"
+    type="submit"
+    class="btn btn-primary ms-auto col-sm-1"
+    (click)="toggleData(); rotate()"
+  >
+    <mat-icon [@rotatedState]="state">expand_less</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container-fluid" [style.display]="toDisplay ? 'block' : 'none'">
+  <div class="row">
+    <div class="col-sm-6 border-end border-bottom pt-3">
+      <app-filtro-ricevuta
+        (childEvent)="SetRicevuta($event)"
+      ></app-filtro-ricevuta>
+    </div>
+    <div class="col-sm-6 border-bottom pt-3">
+      <app-filtro-clienti (childEvent)="cliente = $event"></app-filtro-clienti>
+    </div>
+  </div>
+</div>
+<div *ngIf="ricevuta != null">
+  <div class="container-fluid">
+    <div class="col-sm-12">
+      <app-detail-list [ricevuta]="ricevuta"></app-detail-list>
+    </div>
+    <div class="row justify-content-end mt-3">
+      <div class="col-sm-2">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="cliente == null"
+          (click)="SendPDF()"
+          class="col-sm-12"
+          mat-raised-button
+          color="primary"
+        >
+          Send PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

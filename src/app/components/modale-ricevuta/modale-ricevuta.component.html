@@ -18,7 +18,8 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button
-    mat-button
+    mat-raised-button
+    color="primary"
     [mat-dialog-close]="
       ricevuteList.selectedOptions.hasValue()
         ? ricevuteList.selectedOptions.selected[0].value

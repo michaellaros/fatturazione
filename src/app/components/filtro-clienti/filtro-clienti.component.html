@@ -3,43 +3,104 @@
     <div class="row">
       <mat-form-field appearance="fill" class="col-6">
         <mat-label>Ragione sociale</mat-label>
-        <input matInput formControlName="business_name" />
+        <input
+          matInput
+          formControlName="business_name"
+          [errorStateMatcher]="matcher"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-6">
-        <mat-label>C.F.-P.IVA</mat-label>
-        <input matInput formControlName="cf_piva" />
+        <mat-label>C.F./P.IVA/N°Passaporto</mat-label>
+        <input
+          matInput
+          formControlName="cf_piva_passport"
+          [errorStateMatcher]="matcher"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-6">
         <mat-label>Cognome</mat-label>
-        <input matInput formControlName="surname" />
+        <input
+          matInput
+          formControlName="surname"
+          [errorStateMatcher]="matcher"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-6">
         <mat-label>Nome</mat-label>
-        <input matInput formControlName="name" />
+        <input matInput formControlName="name" [errorStateMatcher]="matcher" />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-6">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
+        <input matInput formControlName="email" [errorStateMatcher]="matcher" />
       </mat-form-field>
     </div>
-    <div class="d-flex">
-      <button mat-fab class="m-2" color="primary" type="reset">
-        <mat-icon>delete</mat-icon>
-      </button>
-      <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
-      <button
-        mat-fab
-        class="m-2"
-        *ngIf="!loading"
-        color="primary"
-        type="submit"
-      >
-        <mat-icon>search</mat-icon>
-      </button>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+        <button
+          mat-fab
+          class="m-2"
+          *ngIf="!loading"
+          color="primary"
+          type="submit"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          mat-fab
+          class="m-2"
+          color="primary"
+          type="reset"
+          (click)="DeselectClient()"
+        >
+          <mat-icon>filter_alt_off</mat-icon>
+        </button>
+      </div>
+      <div class="d-flex align-items-center">
+        <button
+          *ngIf="client != undefined"
+          mat-raised-button
+          color="primary"
+          class="m-2 button-font-size"
+          type="button"
+          (click)="EditClient()"
+        >
+          Modifica dati cliente
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="m-2 button-font-size"
+          type="button"
+          (click)="AddClient()"
+        >
+          Nuovo cliente
+        </button>
+
+        <!-- <button
+          *ngIf="client != null"
+          mat-fab
+          color="primary"
+          class="m-2 button-font-size"
+          type="button"
+          (click)="EditClient()"
+        >
+          <mat-icon>edit_note</mat-icon>
+        </button>
+        <button
+          mat-fab
+          color="primary"
+          class="m-2 button-font-size"
+          type="button"
+          (click)="EditClient()"
+        > 
+          <mat-icon>add</mat-icon>
+        </button>-->
+      </div>
     </div>
   </form>
 </div>

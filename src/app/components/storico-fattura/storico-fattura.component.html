@@ -1,0 +1,54 @@
+<mat-toolbar color="secondary" class="col-sm-12">
+  <h1 class="mb-1">Ricerca fattura</h1>
+</mat-toolbar>
+<div class="container-fluid">
+  <form [formGroup]="form" #formControl id="form" class="">
+    <div class="row pt-3">
+      <mat-form-field appearance="fill" class="col-4 px-3">
+        <mat-label>Ragione sociale</mat-label>
+        <input matInput formControlName="receipt_number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="col-4 px-3">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        </mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="form.controls['start'].invalid">
+          Invalid start date</mat-error
+        >
+        <mat-error *ngIf="form.controls['end'].invalid">
+          Invalid end date</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="row px-3 d-flex border-bottom">
+      <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+      <button
+        mat-fab
+        class="m-2"
+        *ngIf="!loading"
+        color="primary"
+        type="submit"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-fab class="m-2" color="primary" type="reset">
+        <!-- (click)="DeselectClient()" -->
+        <mat-icon>filter_alt_off</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
+<app-storico-list></app-storico-list>

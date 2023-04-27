@@ -39,7 +39,22 @@ export class HttpService {
   }
   RicercaCliente(filtriCliente: FiltroCliente) {
     return this.http
-      .post<{ clienti: Cliente[] }>(this.urlAPI + 'Cliente/', filtriCliente)
+      .post<{ clienti: Cliente[] }>(
+        this.urlAPI + 'Cliente/Search',
+        filtriCliente
+      )
+      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
+  }
+
+  InsertClient(client: Cliente) {
+    return this.http
+      .post<Cliente>(this.urlAPI + 'Cliente/Insert', client)
+      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
+  }
+
+  UpdateClient(client: Cliente) {
+    return this.http
+      .post<Cliente>(this.urlAPI + 'Cliente/Update', client)
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
   }
 
