@@ -2,22 +2,38 @@
   <h1 class="mb-1">Ricerca fattura</h1>
 </mat-toolbar>
 <div class="container-fluid">
-  <form [formGroup]="form" #formControl id="form" class="">
+  <form
+    [formGroup]="form"
+    #formControl
+    id="form"
+    class=""
+    (ngSubmit)="RicercaFattura()"
+  >
     <div class="row pt-3">
       <mat-form-field appearance="fill" class="col-4 px-3">
-        <mat-label>Ragione sociale</mat-label>
-        <input matInput formControlName="receipt_number" />
+        <mat-label>Numero fattura</mat-label>
+        <input
+          matInput
+          formControlName="receipt_number"
+          [errorStateMatcher]="matcher"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-4 px-3">
-        <mat-label>Enter a date range</mat-label>
+        <mat-label>Periodo</mat-label>
         <mat-date-range-input [rangePicker]="picker">
           <input
             matStartDate
             formControlName="start"
-            placeholder="Start date"
+            placeholder="Data inizio"
+            [errorStateMatcher]="matcher"
           />
-          <input matEndDate formControlName="end" placeholder="End date" />
+          <input
+            matEndDate
+            formControlName="end"
+            placeholder="Data fine"
+            [errorStateMatcher]="matcher"
+          />
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker">
@@ -44,11 +60,19 @@
       >
         <mat-icon>search</mat-icon>
       </button>
-      <button mat-fab class="m-2" color="primary" type="reset">
-        <!-- (click)="DeselectClient()" -->
+      <button
+        mat-fab
+        class="m-2"
+        color="primary"
+        type="reset"
+        (click)="ClearFilter()"
+      >
         <mat-icon>filter_alt_off</mat-icon>
       </button>
     </div>
   </form>
 </div>
-<app-storico-list></app-storico-list>
+<app-storico-list
+  *ngIf="ricevuteStorico != null && ricevuteStorico != []"
+  [ricevuteStorico]="ricevuteStorico"
+></app-storico-list>

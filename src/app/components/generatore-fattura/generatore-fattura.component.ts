@@ -6,8 +6,10 @@ import {
   animate,
 } from '@angular/animations';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { Ricevuta } from 'src/app/models/ricevuta';
+import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -29,8 +31,13 @@ export class GeneratoreFatturaComponent {
   public ricevuta!: Ricevuta;
   public clienteSelezionato: string | null = null;
   public cliente!: Cliente;
+  public store_id?: number;
 
-  constructor(private http: HttpService) {}
+  constructor(
+    private http: HttpService,
+    private route: ActivatedRoute,
+    private data: DataService
+  ) {}
 
   state: string = 'default';
   rotate() {

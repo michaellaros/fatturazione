@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { GeneratoreFatturaComponent } from './components/generatore-fattura/generatore-fattura.component';
 import { StoricoFatturaComponent } from './components/storico-fattura/storico-fattura.component';
 import { StoricoListComponent } from './components/storico-list/storico-list.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { StoricoListComponent } from './components/storico-list/storico-list.com
     GeneratoreFatturaComponent,
     StoricoFatturaComponent,
     StoricoListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
