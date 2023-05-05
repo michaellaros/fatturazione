@@ -37,6 +37,8 @@ export class FiltroRicevutaComponent {
       transazione: new FormControl(),
       data: new FormControl('', [Validators.required]),
     });
+    this.form.patchValue({ data: new Date() });
+    this.form.get('data')!.disable();
   }
 
   RicercaRicevuta() {
@@ -77,9 +79,9 @@ export class FiltroRicevutaComponent {
           cassa: nomeFileSplit[1],
           transazione: nomeFileSplit[2],
           data: new Date(
-            nomeFileSplit[3].substring(6, 8) +
+            nomeFileSplit[3].substring(4, 6) +
               '/' +
-              nomeFileSplit[3].substring(4, 6) +
+              nomeFileSplit[3].substring(6, 8) +
               '/' +
               nomeFileSplit[3].substring(0, 4)
           ),
