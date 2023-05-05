@@ -9,135 +9,127 @@
     <mat-icon>close</mat-icon>
   </button>
 </div>
-<mat-dialog-content class="py-0">
-  <form
-    [formGroup]="form"
-    id="form"
-    (ngSubmit)="flg_newClient ? AddClient() : UpdateClient()"
-  >
-    <div mat-dialog-content class="font-15">
-      <div class="row">
-        <mat-form-field appearance="fill" class="col-9">
-          <mat-label>Ragione sociale</mat-label>
-          <input matInput formControlName="business_name" />
-        </mat-form-field>
+<form
+  [formGroup]="form"
+  id="form"
+  (ngSubmit)="flg_newClient ? AddClient() : UpdateClient()"
+>
+  <mat-dialog-content class="py-0">
+    <div class="row">
+      <mat-form-field appearance="fill" class="col-9">
+        <mat-label>Ragione sociale</mat-label>
+        <input matInput formControlName="business_name" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>ID Cliente</mat-label>
-          <input matInput formControlName="client_id" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>ID Cliente</mat-label>
+        <input matInput formControlName="client_id" />
+      </mat-form-field>
 
-        <h3>Compilare almeno uno dei seguenti campi*:</h3>
+      <h3>Compilare almeno uno dei seguenti campi*:</h3>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>Partita IVA</mat-label>
-          <input
-            matInput
-            #piva
-            formControlName="piva"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-hint align="end">{{ piva.value.length }} / 11</mat-hint>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>Partita IVA</mat-label>
+        <input
+          matInput
+          #piva
+          formControlName="piva"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-hint align="end">{{ piva.value.length }} / 11</mat-hint>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-4">
-          <mat-label>Codice fiscale</mat-label>
-          <input
-            matInput
-            #cf
-            formControlName="cf"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-hint align="end">{{ cf.value.length }} / 16</mat-hint>
-        </mat-form-field>
-        <mat-checkbox
-          class="col-2"
-          (change)="SetForeignerClient($event.checked)"
-          [checked]="flg_foreignerClient"
-        >
-          Cliente straniero
-        </mat-checkbox>
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>N° Passaporto</mat-label>
-          <input
-            matInput
-            formControlName="passport_number"
-            [errorStateMatcher]="matcher"
-          />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-4">
+        <mat-label>Codice fiscale</mat-label>
+        <input
+          matInput
+          #cf
+          formControlName="cf"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-hint align="end">{{ cf.value.length }} / 16</mat-hint>
+      </mat-form-field>
+      <mat-checkbox
+        class="col-2"
+        (change)="SetForeignerClient($event.checked)"
+        [checked]="flg_foreignerClient"
+      >
+        Cliente straniero
+      </mat-checkbox>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>N° Passaporto</mat-label>
+        <input
+          matInput
+          formControlName="passport_number"
+          [errorStateMatcher]="matcher"
+        />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-6">
-          <mat-label>Cognome</mat-label>
-          <input matInput formControlName="surname" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Cognome</mat-label>
+        <input matInput formControlName="surname" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-6">
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="name" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-6">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>Numero di Telefono</mat-label>
-          <input matInput formControlName="tel_number" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>Numero di Telefono</mat-label>
+        <input matInput formControlName="tel_number" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3 input-box">
-          <mat-label>Numero di Cellulare</mat-label>
-          <input matInput formControlName="cel_number" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3 input-box">
+        <mat-label>Numero di Cellulare</mat-label>
+        <input matInput formControlName="cel_number" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-6">
-          <mat-label>Indirizzo</mat-label>
-          <input matInput formControlName="address" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Indirizzo</mat-label>
+        <input matInput formControlName="address" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-6">
-          <mat-label>Città</mat-label>
-          <input matInput formControlName="city" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Città</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>CAP</mat-label>
-          <input matInput #zipcode formControlName="zipcode" />
-          <mat-hint align="end">{{ zipcode.value.length }} / 5</mat-hint>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>CAP</mat-label>
+        <input matInput #zipcode formControlName="zipcode" />
+        <mat-hint align="end">{{ zipcode.value.length }} / 5</mat-hint>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>Codice Provincia</mat-label>
-          <input matInput formControlName="district_code" />
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>Codice Provincia</mat-label>
+        <input matInput formControlName="district_code" />
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>Codice Nazione</mat-label>
-          <input matInput #countryCode formControlName="country_code" />
-          <mat-hint align="end">{{ countryCode.value.length }} / 2</mat-hint>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>Codice Nazione</mat-label>
+        <input matInput #countryCode formControlName="country_code" />
+        <mat-hint align="end">{{ countryCode.value.length }} / 2</mat-hint>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-3">
-          <mat-label>Codice Destinazione</mat-label>
-          <input
-            matInput
-            #cod_destinazione
-            formControlName="cod_destinazione"
-          />
-          <mat-hint align="end"
-            >{{ cod_destinazione.value.length }} / 7</mat-hint
-          >
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="col-3">
+        <mat-label>Codice Destinazione</mat-label>
+        <input matInput #cod_destinazione formControlName="cod_destinazione" />
+        <mat-hint align="end">{{ cod_destinazione.value.length }} / 7</mat-hint>
+      </mat-form-field>
 
-        <mat-form-field appearance="fill" class="col-12">
-          <mat-label>Note</mat-label>
-          <input matInput formControlName="note" />
-        </mat-form-field>
-      </div>
+      <mat-form-field appearance="fill" class="col-12">
+        <mat-label>Note</mat-label>
+        <input matInput formControlName="note" />
+      </mat-form-field>
     </div>
-    <mat-dialog-actions align="end">
-      <button mat-raised-button color="primary" type="submit">conferma</button>
-    </mat-dialog-actions>
-  </form>
-</mat-dialog-content>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" type="submit">conferma</button>
+</mat-dialog-actions>
