@@ -20,6 +20,7 @@ import { GeneratoreFatturaComponent } from './components/generatore-fattura/gene
 import { StoricoFatturaComponent } from './components/storico-fattura/storico-fattura.component';
 import { StoricoListComponent } from './components/storico-list/storico-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ModaleFatturaCreataComponent } from './components/modale-fattura-creata/modale-fattura-creata.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeaderComponent } from './components/header/header.component';
     StoricoFatturaComponent,
     StoricoListComponent,
     HeaderComponent,
+    ModaleFatturaCreataComponent,
   ],
   imports: [
     BrowserModule,

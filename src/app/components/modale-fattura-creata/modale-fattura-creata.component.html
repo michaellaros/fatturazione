@@ -1,0 +1,23 @@
+<div class="w-100 d-flex position-relative">
+  <h1 mat-dialog-title class="me-5">
+    {{ flg_isFattura ? "Fattura" : "Nota di credito" }} creata con successo!
+  </h1>
+
+  <button
+    mat-icon-button
+    class="m-2 position-absolute end-0"
+    [mat-dialog-close]="null"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  {{ flg_isFattura ? "Fattura" : "Nota di credito" }} creata con numero:
+  {{ info.receipt_number }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="ScaricaPDF()">
+    scarica PDF
+  </button>
+  <button mat-raised-button color="primary" [mat-dialog-close]>chiudi</button>
+</mat-dialog-actions>

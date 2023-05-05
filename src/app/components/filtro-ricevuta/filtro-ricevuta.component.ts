@@ -38,7 +38,7 @@ export class FiltroRicevutaComponent {
       data: new FormControl('', [Validators.required]),
     });
     this.form.patchValue({ data: new Date() });
-    this.form.get('data')!.disable();
+    //this.form.get('data')!.disable();
   }
 
   RicercaRicevuta() {

@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { infoRicevuta } from 'src/app/models/infoRicevuta';
 import { RicevutaStorico } from 'src/app/models/ricevutaStorico';
 import { HttpService } from 'src/app/services/http.service';
+import { ModaleFatturaCreataComponent } from '../modale-fattura-creata/modale-fattura-creata.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-storico-list',
@@ -8,6 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./storico-list.component.css'],
 })
 export class StoricoListComponent {
+  @Output() public childEvent = new EventEmitter<string>();
   @Input() ricevuteStorico!: RicevutaStorico[];
   displayedColumns: string[] = [
     'index',
@@ -17,20 +21,22 @@ export class StoricoListComponent {
     'date',
     'actions',
   ];
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private dialog: MatDialog) {}
 
   GetExistingPDF(ricevuta: RicevutaStorico) {
     console.log(
       JSON.stringify(ricevuta.date!).split('T')[0].replaceAll('-', '')
     );
     this.http.GetExistingPDF(
-      ricevuta.store_id!,
-      ricevuta.receipt_year!,
-      ricevuta.receipt_number!,
-      JSON.stringify(ricevuta.date!)
-        .split('T')[0]
-        .replaceAll('-', '')
-        .replaceAll('"', '')
+      new infoRicevuta(
+        ricevuta.store_id!,
+        ricevuta.receipt_year!,
+        ricevuta.receipt_number!,
+        JSON.stringify(ricevuta.date!)
+          .split('T')[0]
+          .replaceAll('-', '')
+          .replaceAll('"', '')
+      )
     );
   }
 
@@ -38,14 +44,27 @@ export class StoricoListComponent {
     console.log(
       JSON.stringify(ricevuta.date!).split('T')[0].replaceAll('-', '')
     );
-    this.http.GetCreditNotes(
-      ricevuta.store_id!,
-      ricevuta.receipt_year!,
-      ricevuta.receipt_number!,
-      JSON.stringify(ricevuta.date!)
-        .split('T')[0]
-        .replaceAll('-', '')
-        .replaceAll('"', '')
-    );
+    this.http
+      .GetCreditNotes(
+        ricevuta.store_id!,
+        ricevuta.receipt_year!,
+        ricevuta.receipt_number!,
+        JSON.stringify(ricevuta.date!)
+          .split('T')[0]
+          .replaceAll('-', '')
+          .replaceAll('"', '')
+      )
+      .subscribe((info) => {
+        this.openDialog(info);
+      });
+  }
+
+  openDialog(info: infoRicevuta): void {
+    this.dialog.closeAll();
+    console.log(info);
+    const dialogRef = this.dialog.open(ModaleFatturaCreataComponent, {
+      data: { info: info, flg_isFattura: false },
+    });
+    dialogRef.afterClosed().subscribe(() => this.childEvent.emit());
   }
 }

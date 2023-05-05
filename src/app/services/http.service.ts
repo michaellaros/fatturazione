@@ -10,6 +10,7 @@ import { FiltroCliente } from '../models/filtroCliente';
 import { RicevutaSelect } from '../models/ricevutaSelect';
 import { FiltroStoricoRicevuta } from '../models/filtroStoricoRicevuta';
 import { RicevutaStorico } from '../models/ricevutaStorico';
+import { infoRicevuta } from '../models/infoRicevuta';
 
 @Injectable({
   providedIn: 'root',
@@ -72,15 +73,14 @@ export class HttpService {
 
   SendPDF(receiptName: string, cliente: Cliente) {
     return this.http
-      .post(
-        this.urlAPI + 'PDF/SendPDF',
-        { client_id: cliente.id, receiptName },
-        { responseType: 'blob' as 'json' }
-      )
-      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)))
-      .subscribe((data) =>
-        this.DownloadPDF(data, cliente.business_name + receiptName)
-      );
+      .post<infoRicevuta>(this.urlAPI + 'PDF/SendPDF', {
+        client_id: cliente.id,
+        receiptName,
+      })
+      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
+    // .subscribe((data) =>
+    //   this.DownloadPDF(data, cliente.business_name + receiptName)
+    // );
   }
 
   ErrorHandler(error: HttpErrorResponse) {
@@ -109,26 +109,14 @@ export class HttpService {
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
   }
 
-  GetExistingPDF(
-    store_id: string,
-    receipt_year: string,
-    receipt_number: string,
-    date: string
-  ) {
+  GetExistingPDF(info: infoRicevuta) {
     return this.http
-      .post(
-        this.urlAPI + 'PDF/GetExistingPDF',
-        {
-          store_id: store_id,
-          receipt_year: receipt_year,
-          receipt_number: receipt_number,
-          date: date,
-        },
-        { responseType: 'blob' as 'json' }
-      )
+      .post(this.urlAPI + 'PDF/GetExistingPDF', info, {
+        responseType: 'blob' as 'json',
+      })
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)))
       .subscribe((data) =>
-        this.DownloadPDF(data, receipt_number + '_' + store_id)
+        this.DownloadPDF(data, info.receipt_number + '_' + info.store_id)
       );
   }
 
@@ -139,19 +127,15 @@ export class HttpService {
     date: string
   ) {
     return this.http
-      .post(
-        this.urlAPI + 'PDF/GetCreditNotes',
-        {
-          store_id: store_id,
-          receipt_year: receipt_year,
-          receipt_number: receipt_number,
-          date: date,
-        },
-        { responseType: 'blob' as 'json' }
-      )
-      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)))
-      .subscribe((data) =>
-        this.DownloadPDF(data, 'storno_' + receipt_number + '_' + store_id)
-      );
+      .post<infoRicevuta>(this.urlAPI + 'PDF/GetCreditNotes', {
+        store_id: store_id,
+        receipt_year: receipt_year,
+        receipt_number: receipt_number,
+        date: date,
+      })
+      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
+    // .subscribe((data) =>
+    //   this.DownloadPDF(data, 'storno_' + receipt_number + '_' + store_id)
+    // );
   }
 }
