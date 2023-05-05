@@ -12,9 +12,8 @@ export class StoricoListComponent {
   displayedColumns: string[] = [
     'index',
     'receipt_number',
-    'year',
-    'store_id',
     'receipt_type',
+    'storno_number',
     'date',
     'actions',
   ];
