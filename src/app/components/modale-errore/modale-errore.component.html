@@ -1,7 +1,18 @@
-<h1 mat-dialog-title  style= "color:red">Si è verificato un errore!</h1>
-<div mat-dialog-content>
-  <h2 *ngIf="errore.status === 404">  Nessun elemento trovato!</h2>
+
+<div class="w-100 d-flex position-relative">
+  <h1 mat-dialog-title  style= "color:red">Si è verificato un errore!</h1>
+
+  <button
+    mat-icon-button
+    class="m-2 position-absolute end-0"
+    [mat-dialog-close]="null"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
+<mat-dialog-content class="py-0">
+  <h2 *ngIf="errore.status === 404">  Nessun elemento trovato!</h2>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]=>conferma</button>
 </mat-dialog-actions>

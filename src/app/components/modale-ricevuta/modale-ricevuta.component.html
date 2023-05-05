@@ -1,5 +1,15 @@
-<h1 mat-dialog-title>Selezionare lo scontrino desiderato:</h1>
-<mat-dialog-content>
+<div class="w-100 d-flex position-relative">
+  <h1 mat-dialog-title>Selezionare lo scontrino desiderato:</h1>
+
+  <button
+    mat-icon-button
+    class="m-2 position-absolute end-0"
+    [mat-dialog-close]="null"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="py-0">
   <mat-selection-list #ricevuteList [multiple]="false">
     <mat-list-option
       *ngFor="let ricevuta of ricevute"
