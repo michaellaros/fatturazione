@@ -149,7 +149,6 @@ export class ModaleAddClientComponent {
         this.form.value['cod_destinazione'],
         this.form.value['note']
       );
-      console.log(client);
       this.http
         .InsertClient(client)
         .subscribe((data) => this.dialogRef.close(data));
@@ -178,7 +177,6 @@ export class ModaleAddClientComponent {
         this.form.value['cod_destinazione'],
         this.form.value['note']
       );
-      console.log('preedit', client);
       this.http
         .UpdateClient(client)
         .subscribe((data) => this.dialogRef.close(data));

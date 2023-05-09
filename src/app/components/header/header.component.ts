@@ -14,10 +14,16 @@ export class HeaderComponent {
     public router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe((data) => {
+      if (data['retailstoreid'] != null) {
+        this.data.store_id =
+          data['retailstoreid'] == 10000 ? null : data['retailstoreid'];
+      }
+    });
+  }
 
   Navigate(path: string) {
-    console.log(this.data.store_id);
     this.router.navigate([path]);
   }
 }

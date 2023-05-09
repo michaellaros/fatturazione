@@ -56,7 +56,6 @@ export class GeneratoreFatturaComponent {
   }
 
   SendPDF() {
-    console.log(this.ricevuta, this.cliente);
     this.http
       .SendPDF(this.ricevuta!.nome_ricevuta, this.cliente)
       .subscribe((info) => {
@@ -66,7 +65,6 @@ export class GeneratoreFatturaComponent {
 
   openDialog(info: infoRicevuta): void {
     this.dialog.closeAll();
-    console.log(info);
     const dialogRef = this.dialog.open(ModaleFatturaCreataComponent, {
       data: { info: info, flg_isFattura: true },
     });
@@ -76,7 +74,6 @@ export class GeneratoreFatturaComponent {
   SetRicevuta(filename: string) {
     this.http.GetRicevuta(filename).subscribe((data) => {
       this.ricevuta = data;
-      console.log(data, 'ciao');
     });
   }
 }

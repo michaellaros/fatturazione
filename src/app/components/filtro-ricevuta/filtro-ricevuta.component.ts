@@ -12,6 +12,7 @@ import { RicevutaSelect } from 'src/app/models/ricevutaSelect';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleRicevutaComponent } from '../modale-ricevuta/modale-ricevuta.component';
 import { Ricevuta } from 'src/app/models/ricevuta';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-filtro-ricevuta',
@@ -29,7 +30,8 @@ export class FiltroRicevutaComponent {
   public constructor(
     private httpclient: HttpService,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    data: DataService
   ) {
     this.form = this.fb.group({
       negozio: new FormControl('', [Validators.required]),
@@ -38,7 +40,13 @@ export class FiltroRicevutaComponent {
       data: new FormControl('', [Validators.required]),
     });
     this.form.patchValue({ data: new Date() });
-    //this.form.get('data')!.disable();
+    this.form.get('data')!.disable();
+    if (data.store_id != null) {
+      this.form.patchValue({ negozio: data.store_id });
+      this.form.get('negozio')!.disable();
+    } else if (this.form.get('negozio')!.disabled) {
+      this.form.get('negozio')!.enable();
+    }
   }
 
   RicercaRicevuta() {
@@ -53,7 +61,6 @@ export class FiltroRicevutaComponent {
         dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset());
         filtriRicevuta.data = dt;
       }
-      console.log(filtriRicevuta);
       this.loading = true;
       this.httpclient.RicercaRicevuta(filtriRicevuta).subscribe({
         next: (data) => {

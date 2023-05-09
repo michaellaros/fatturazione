@@ -63,7 +63,6 @@ export class FiltroClientiComponent {
   }
 
   SetClient = (result: Cliente) => {
-    console.log(result);
     if (result != null) {
       this.form.patchValue({
         business_name: result.business_name,
