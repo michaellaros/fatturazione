@@ -62,7 +62,6 @@ export class HttpService {
   }
 
   RicercaRicevuta(filtriRicevuta: any) {
-    console.log(filtriRicevuta);
     return this.http
       .post<{ ricevute: RicevutaSelect[] }>(
         this.urlAPI + 'Ricevuta/',
@@ -85,9 +84,6 @@ export class HttpService {
 
   ErrorHandler(error: HttpErrorResponse) {
     const dialogRef = this.dialog.open(ModaleErroreComponent, { data: error });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed: ' + result);
-    });
 
     return throwError(() => new Error(error.message || 'Server error!'));
   }
@@ -103,7 +99,6 @@ export class HttpService {
   }
 
   RicercaFattura(filtro: FiltroStoricoRicevuta) {
-    console.log(filtro);
     return this.http
       .post<RicevutaStorico[]>(this.urlAPI + 'Ricevuta/Storico', filtro)
       .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));

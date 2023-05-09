@@ -21,6 +21,7 @@ import { StoricoFatturaComponent } from './components/storico-fattura/storico-fa
 import { StoricoListComponent } from './components/storico-list/storico-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ModaleFatturaCreataComponent } from './components/modale-fattura-creata/modale-fattura-creata.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,10 @@ import { ModaleFatturaCreataComponent } from './components/modale-fattura-creata
     NgbModule,
     AppRoutingModule,
   ],
-  providers: [HttpService],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    HttpService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

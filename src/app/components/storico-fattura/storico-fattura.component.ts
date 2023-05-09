@@ -58,6 +58,7 @@ export class StoricoFatturaComponent {
   public RicercaFattura() {
     if (this.form.valid) {
       var filtriRicevuta = new FiltroStoricoRicevuta();
+      filtriRicevuta.store_id = this.data.store_id;
       filtriRicevuta.receipt_number =
         this.form.get('receipt_number') != null
           ? this.form.get('receipt_number')!.value
@@ -87,7 +88,6 @@ export class StoricoFatturaComponent {
       this.loading = true;
       this.httpclient.RicercaFattura(filtriRicevuta).subscribe({
         next: (data) => {
-          console.log(data);
           this.ricevuteStorico = data;
         },
         complete: () => (this.loading = false),

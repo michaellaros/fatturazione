@@ -1,8 +1,16 @@
-<mat-toolbar color="primary" class="d-flex">
-  <a (click)="Navigate('/Home')">
-    <mat-label class="my-auto me-3 h3"> Fatturazione </mat-label>
-  </a>
-  <a (click)="Navigate('/Storico')">
-    <mat-label class="my-auto">Storico</mat-label>
-  </a>
+<mat-toolbar color="primary" class="d-flex position-relative">
+  <div class="d-flex">
+    <a (click)="Navigate('/Home')">
+      <mat-label class="my-auto me-3 h3"> Fatturazione </mat-label>
+    </a>
+    <a (click)="Navigate('/Storico')">
+      <mat-label class="my-auto">Storico</mat-label>
+    </a>
+  </div>
+  <h2
+    class="position-absolute end-0 my-auto me-3 h3"
+    *ngIf="this.data.store_id != null"
+  >
+    Negozio {{ this.data.store_id }}
+  </h2>
 </mat-toolbar>

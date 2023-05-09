@@ -55,7 +55,7 @@
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Data</th>
       <td mat-cell *matCellDef="let ricevuta">
-        {{ ricevuta.date.split("T")[0] }}
+        {{ formatDate(ricevuta.date.split("T")[0]) }}
       </td>
     </ng-container>
 

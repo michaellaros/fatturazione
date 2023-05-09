@@ -24,9 +24,6 @@ export class StoricoListComponent {
   constructor(private http: HttpService, private dialog: MatDialog) {}
 
   GetExistingPDF(ricevuta: RicevutaStorico) {
-    console.log(
-      JSON.stringify(ricevuta.date!).split('T')[0].replaceAll('-', '')
-    );
     this.http.GetExistingPDF(
       new infoRicevuta(
         ricevuta.store_id!,
@@ -41,9 +38,6 @@ export class StoricoListComponent {
   }
 
   GetCreditNotes(ricevuta: RicevutaStorico) {
-    console.log(
-      JSON.stringify(ricevuta.date!).split('T')[0].replaceAll('-', '')
-    );
     this.http
       .GetCreditNotes(
         ricevuta.store_id!,
@@ -61,10 +55,14 @@ export class StoricoListComponent {
 
   openDialog(info: infoRicevuta): void {
     this.dialog.closeAll();
-    console.log(info);
     const dialogRef = this.dialog.open(ModaleFatturaCreataComponent, {
       data: { info: info, flg_isFattura: false },
     });
     dialogRef.afterClosed().subscribe(() => this.childEvent.emit());
+  }
+
+  formatDate(data: string) {
+    let dataSplit = data.split('-');
+    return dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0];
   }
 }
