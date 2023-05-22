@@ -1,16 +1,26 @@
-<mat-toolbar color="primary" class="d-flex position-relative">
-  <div class="d-flex">
-    <a (click)="Navigate('/Home')">
-      <mat-label class="my-auto me-3 h3"> Fatturazione </mat-label>
-    </a>
-    <a (click)="Navigate('/Storico')">
-      <mat-label class="my-auto">Storico</mat-label>
-    </a>
+<mat-toolbar color="primary" class="d-flex justify-content-between">
+  <div class="d-flex col-5">
+    <mat-label class="my-auto me-3 h3" style="color: orange">
+      Fatturazione:
+    </mat-label>
+    <mat-label class="my-auto me-3 h5">{{
+      this.currentRoute === "/Storico" ? " Ristampa/Storno" : "Emissione"
+    }}</mat-label>
   </div>
-  <h2
-    class="position-absolute end-0 my-auto me-3 h3"
-    *ngIf="this.data.store_id != null"
-  >
-    Negozio {{ this.data.store_id }}
-  </h2>
+  <div class="col-auto">
+    <h3 class="my-auto h3" *ngIf="this.data.store_id != null">
+      Negozio {{ this.data.store_id }}
+    </h3>
+  </div>
+  <div class="d-flex col-5 justify-content-end">
+    <a (click)="Navigate()">
+      <mat-label class="my-auto h6">
+        vai a
+        {{
+          this.currentRoute === "/Storico" ? "Emissione" : " Ristampa/Storno"
+        }}</mat-label
+      >
+    </a>
+    <mat-icon class="my-auto"> arrow_forward </mat-icon>
+  </div>
 </mat-toolbar>

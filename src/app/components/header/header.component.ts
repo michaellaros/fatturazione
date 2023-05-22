@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -8,11 +9,18 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  currentRoute?: string;
   constructor(
     public data: DataService,
     public route: ActivatedRoute,
     public router: Router
-  ) {}
+  ) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.currentRoute = (event as NavigationEnd).url;
+      });
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe((data) => {
@@ -23,7 +31,9 @@ export class HeaderComponent {
     });
   }
 
-  Navigate(path: string) {
-    this.router.navigate([path]);
+  Navigate() {
+    console.log(this.currentRoute);
+    if (this.currentRoute == '/Storico') this.router.navigate(['']);
+    else this.router.navigate(['/Storico']);
   }
 }
