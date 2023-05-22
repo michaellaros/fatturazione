@@ -14,7 +14,7 @@
       <mat-form-field appearance="fill" class="col-6">
         <mat-label>Data transazione</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="data" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle
           matIconSuffix
           [for]="picker"
@@ -38,7 +38,13 @@
         <mat-icon>search</mat-icon>
       </button>
       <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
-      <button mat-fab color="primary" class="m-2" type="reset">
+      <button
+        mat-fab
+        color="primary"
+        class="m-2"
+        type="reset"
+        (click)="DeselectRicevuta()"
+      >
         <mat-icon>filter_alt_off</mat-icon>
       </button>
     </div>

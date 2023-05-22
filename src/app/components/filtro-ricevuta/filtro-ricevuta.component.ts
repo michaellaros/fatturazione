@@ -25,7 +25,7 @@ export class FiltroRicevutaComponent {
   public ricevuteTrovate: string[] = [];
   public form: FormGroup;
   public loading: boolean = false;
-  @Output() public childEvent = new EventEmitter<string>();
+  @Output() public childEvent = new EventEmitter<string | null>();
 
   public constructor(
     private httpclient: HttpService,
@@ -96,5 +96,10 @@ export class FiltroRicevutaComponent {
         this.childEvent.emit(result);
       }
     });
+  }
+
+  public DeselectRicevuta() {
+    this.ricevutaSelezionata = null;
+    this.childEvent.emit(null);
   }
 }

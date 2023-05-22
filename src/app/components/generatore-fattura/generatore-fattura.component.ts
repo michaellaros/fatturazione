@@ -71,9 +71,13 @@ export class GeneratoreFatturaComponent {
     dialogRef.afterClosed().subscribe(() => (this.ricevuta = null));
   }
 
-  SetRicevuta(filename: string) {
-    this.http.GetRicevuta(filename).subscribe((data) => {
-      this.ricevuta = data;
-    });
+  SetRicevuta(filename: string | null) {
+    if (filename != null) {
+      this.http.GetRicevuta(filename).subscribe((data) => {
+        this.ricevuta = data;
+      });
+    } else {
+      this.ricevuta = null;
+    }
   }
 }

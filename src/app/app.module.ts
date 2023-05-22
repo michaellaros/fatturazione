@@ -22,6 +22,7 @@ import { StoricoListComponent } from './components/storico-list/storico-list.com
 import { HeaderComponent } from './components/header/header.component';
 import { ModaleFatturaCreataComponent } from './components/modale-fattura-creata/modale-fattura-creata.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
     HttpService,
   ],
   bootstrap: [AppComponent],
