@@ -61,6 +61,7 @@ export class GeneratoreFatturaComponent {
       .subscribe((info) => {
         this.openDialog(info);
       });
+    this.ricevuta = null;
   }
 
   openDialog(info: infoRicevuta): void {

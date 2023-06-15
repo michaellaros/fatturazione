@@ -66,10 +66,11 @@
           mat-raised-button
           class="m-2"
           color="primary"
-          (click)="GetCreditNotes(ricevuta)"
+          (click)="GetCreditNotes(ricevuta); disableButton(button)"
           [disabled]="
             ricevuta.receipt_type == 1 || ricevuta.storno_number != ''
           "
+          #button
         >
           Storna
         </button>

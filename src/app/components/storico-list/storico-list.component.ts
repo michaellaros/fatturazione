@@ -4,6 +4,7 @@ import { RicevutaStorico } from 'src/app/models/ricevutaStorico';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleFatturaCreataComponent } from '../modale-fattura-creata/modale-fattura-creata.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-storico-list',
@@ -64,5 +65,11 @@ export class StoricoListComponent {
   formatDate(data: string) {
     let dataSplit = data.split('-');
     return dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0];
+  }
+  disableButton(button: MatButton) {
+    button.disabled = true;
+    setTimeout(() => {
+      button.disabled = false;
+    }, 5000);
   }
 }
