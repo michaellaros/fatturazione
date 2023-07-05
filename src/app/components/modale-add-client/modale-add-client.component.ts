@@ -1,10 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   FormGroupDirective,
   NgForm,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -27,6 +29,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       (control! && control.invalid)
     );
   }
+}
+
+export function lengthValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value;
+
+    if (
+      value == null ||
+      (value && (value.length === 11 || value.length === 16))
+    ) {
+      return null; // Return null if the validation passes
+    }
+
+    return { lengthError: true }; // Return an error object if the validation fails
+  };
 }
 
 @Component({
@@ -58,10 +75,7 @@ export class ModaleAddClientComponent {
         Validators.minLength(11),
         Validators.maxLength(11),
       ]),
-      cf: new FormControl(null, [
-        Validators.minLength(16),
-        Validators.maxLength(16),
-      ]),
+      cf: new FormControl(null, [lengthValidator()]),
       passport_number: new FormControl({ value: null, disabled: true }, [
         Validators.maxLength(40),
       ]),
@@ -209,5 +223,9 @@ export class ModaleAddClientComponent {
       (this.form.value['passport_number'] == null ||
         this.form.value['passport_number'] == '')
     );
+  }
+
+  public IsCfVlaid() {
+    return this.form.get('cf')!.valid;
   }
 }

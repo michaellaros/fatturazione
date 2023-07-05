@@ -60,28 +60,36 @@
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Azioni</th>
-      <td mat-cell *matCellDef="let ricevuta" class="d-flex align-content-end">
-        <button
-          mat-raised-button
-          class="m-2"
-          color="primary"
-          (click)="GetCreditNotes(ricevuta); disableButton(button)"
-          [disabled]="
-            ricevuta.receipt_type == 1 || ricevuta.storno_number != ''
-          "
-          #button
-        >
-          Storna
-        </button>
-        <button
-          mat-raised-button
-          class="m-2"
-          color="primary"
-          (click)="GetExistingPDF(ricevuta)"
-        >
-          Ristampa
-        </button>
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="d-flex justify-content-center">Azioni</div>
+      </th>
+      <td mat-cell *matCellDef="let ricevuta">
+        <div class="d-flex justify-content-end">
+          <div class="col-auto pe-2">
+            <button
+              mat-raised-button
+              class="m-2"
+              color="warn"
+              (click)="GetCreditNotes(ricevuta); disableButton(button)"
+              [disabled]="
+                ricevuta.receipt_type == 1 || ricevuta.storno_number != ''
+              "
+              #button
+            >
+              Storna
+            </button>
+          </div>
+          <div class="col-auto ps-2">
+            <button
+              mat-raised-button
+              class="m-2"
+              color="primary"
+              (click)="GetExistingPDF(ricevuta)"
+            >
+              Ristampa
+            </button>
+          </div>
+        </div>
 
         <!-- <button mat-fab class="m-2" color="primary">
           <mat-icon>download</mat-icon>

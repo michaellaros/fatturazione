@@ -5,6 +5,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { ModaleFatturaCreataComponent } from '../modale-fattura-creata/modale-fattura-creata.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
+import { ModaleConfirmComponent } from '../modale-confirm/modale-confirm.component';
 
 @Component({
   selector: 'app-storico-list',
@@ -39,19 +40,26 @@ export class StoricoListComponent {
   }
 
   GetCreditNotes(ricevuta: RicevutaStorico) {
-    this.http
-      .GetCreditNotes(
-        ricevuta.store_id!,
-        ricevuta.receipt_year!,
-        ricevuta.receipt_number!,
-        JSON.stringify(ricevuta.date!)
-          .split('T')[0]
-          .replaceAll('-', '')
-          .replaceAll('"', '')
-      )
-      .subscribe((info) => {
-        this.openDialog(info);
-      });
+    const dialogRef = this.dialog.open(ModaleConfirmComponent, {
+      data: 'Sei sicuro di voler stornare questa fattura?',
+    });
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.http
+          .GetCreditNotes(
+            ricevuta.store_id!,
+            ricevuta.receipt_year!,
+            ricevuta.receipt_number!,
+            JSON.stringify(ricevuta.date!)
+              .split('T')[0]
+              .replaceAll('-', '')
+              .replaceAll('"', '')
+          )
+          .subscribe((info) => {
+            this.openDialog(info);
+          });
+      }
+    });
   }
 
   openDialog(info: infoRicevuta): void {
@@ -72,4 +80,6 @@ export class StoricoListComponent {
       button.disabled = false;
     }, 5000);
   }
+
+  ConfirmStorno() {}
 }

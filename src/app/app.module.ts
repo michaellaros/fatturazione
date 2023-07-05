@@ -23,6 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ModaleFatturaCreataComponent } from './components/modale-fattura-creata/modale-fattura-creata.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ModaleConfirmComponent } from './components/modale-confirm/modale-confirm.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     StoricoListComponent,
     HeaderComponent,
     ModaleFatturaCreataComponent,
+    ModaleConfirmComponent,
   ],
   imports: [
     BrowserModule,

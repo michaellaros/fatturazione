@@ -1,0 +1,20 @@
+<div class="w-100 d-flex position-relative">
+  <h1 mat-dialog-title class="me-5">{{ messaggio }}</h1>
+
+  <button
+    mat-icon-button
+    class="m-2 position-absolute end-0"
+    [mat-dialog-close]="false"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" [mat-dialog-close]="false">
+    Annulla
+  </button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    Conferma
+  </button>
+</mat-dialog-actions>
