@@ -35,7 +35,7 @@
         <button
           type="submit"
           class="btn btn-primary"
-          [disabled]="cliente == null"
+          [disabled]="cliente == null || loading"
           (click)="SendPDF()"
           class="col-sm-12"
           mat-raised-button
@@ -46,4 +46,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="overlay" *ngIf="loading">
+  <mat-progress-spinner
+    class="spinner"
+    [diameter]="50"
+    mode="indeterminate"
+  ></mat-progress-spinner>
 </div>

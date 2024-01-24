@@ -15,6 +15,9 @@ import { ModaleConfirmComponent } from '../modale-confirm/modale-confirm.compone
 export class StoricoListComponent {
   @Output() public childEvent = new EventEmitter<string>();
   @Input() ricevuteStorico!: RicevutaStorico[];
+
+  public loading = false;
+
   displayedColumns: string[] = [
     'index',
     'receipt_number',
@@ -40,6 +43,7 @@ export class StoricoListComponent {
   }
 
   GetCreditNotes(ricevuta: RicevutaStorico) {
+    this.loading = true;
     const dialogRef = this.dialog.open(ModaleConfirmComponent, {
       data: 'Sei sicuro di voler stornare questa fattura?',
     });
@@ -57,7 +61,10 @@ export class StoricoListComponent {
           )
           .subscribe((info) => {
             this.openDialog(info);
+            this.loading = false;
           });
+      } else {
+        this.loading = false;
       }
     });
   }
@@ -74,12 +81,11 @@ export class StoricoListComponent {
     let dataSplit = data.split('-');
     return dataSplit[2] + '/' + dataSplit[1] + '/' + dataSplit[0];
   }
-  disableButton(button: MatButton) {
-    button.disabled = true;
-    setTimeout(() => {
-      button.disabled = false;
-    }, 5000);
-  }
+  // disableButton(button: MatButton) {
+  //   setTimeout(() => {
+  //     button.disabled = false;
+  //   }, 5000);
+  // }
 
   ConfirmStorno() {}
 }

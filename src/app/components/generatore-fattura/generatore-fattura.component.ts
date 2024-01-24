@@ -15,6 +15,10 @@ import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ModaleRicevutaComponent } from '../modale-ricevuta/modale-ricevuta.component';
 import { ModaleFatturaCreataComponent } from '../modale-fattura-creata/modale-fattura-creata.component';
+import { MatButton } from '@angular/material/button';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
+import { ModaleErroreComponent } from '../modale-errore/modale-errore.component';
 
 @Component({
   selector: 'app-generatore-fattura',
@@ -36,6 +40,7 @@ export class GeneratoreFatturaComponent {
   public clienteSelezionato: string | null = null;
   public cliente!: Cliente;
   public store_id?: number;
+  public loading = false;
 
   constructor(
     private http: HttpService,
@@ -56,10 +61,21 @@ export class GeneratoreFatturaComponent {
   }
 
   SendPDF() {
+    this.loading = true;
     this.http
       .SendPDF(this.ricevuta!.nome_ricevuta, this.cliente)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          const dialogRef = this.dialog.open(ModaleErroreComponent, {
+            data: error,
+          });
+          this.loading = false;
+          return throwError(() => new Error(error.message || 'Server error!'));
+        })
+      )
       .subscribe((info) => {
         this.openDialog(info);
+        this.loading = false;
       });
     this.ricevuta = null;
   }

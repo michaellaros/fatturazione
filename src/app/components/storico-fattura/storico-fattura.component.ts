@@ -90,8 +90,12 @@ export class StoricoFatturaComponent {
         next: (data) => {
           this.ricevuteStorico = data;
         },
-        complete: () => (this.loading = false),
-        error: () => (this.loading = false),
+        complete: () => {
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+        },
       });
     }
   }

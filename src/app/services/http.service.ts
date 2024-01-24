@@ -71,12 +71,10 @@ export class HttpService {
   }
 
   SendPDF(receiptName: string, cliente: Cliente) {
-    return this.http
-      .post<infoRicevuta>(this.urlAPI + 'PDF/SendPDF', {
-        client_id: cliente.id,
-        receiptName,
-      })
-      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
+    return this.http.post<infoRicevuta>(this.urlAPI + 'PDF/SendPDF', {
+      client_id: cliente.id,
+      receiptName,
+    });
     // .subscribe((data) =>
     //   this.DownloadPDF(data, cliente.business_name + receiptName)
     // );
