@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -28,6 +29,7 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatCheckboxModule,
   MatSnackBarModule,
+  MatAutocompleteModule,
 ];
 
 @NgModule({

@@ -95,9 +95,34 @@
         <input matInput formControlName="address" />
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="col-6">
+      <!-- <mat-form-field
+        appearance="fill"
+        class="col-6"
+        *ngIf="flg_foreignerClient"
+      >
         <mat-label>Città</mat-label>
         <input matInput formControlName="city" />
+      </mat-form-field> -->
+
+      <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Città</mat-label>
+        <input matInput [matAutocomplete]="auto" formControlName="city" />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let province of provinces"
+            (click)="SetProvince(province)"
+            [value]="province.citta"
+          >
+            <!-- <img
+              alt=""
+              class="example-option-img"
+              [src]="state.flag"
+              height="25"
+            /> -->
+            <span>{{ province.citta }}</span> |
+            <small>{{ province.codice }}({{ province.provincia }})</small>
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="col-3">

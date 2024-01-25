@@ -1,5 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Ricevuta } from '../models/ricevuta';
@@ -11,6 +15,7 @@ import { RicevutaSelect } from '../models/ricevutaSelect';
 import { FiltroStoricoRicevuta } from '../models/filtroStoricoRicevuta';
 import { RicevutaStorico } from '../models/ricevutaStorico';
 import { infoRicevuta } from '../models/infoRicevuta';
+import { Province } from '../models/province';
 
 @Injectable({
   providedIn: 'root',
@@ -130,5 +135,13 @@ export class HttpService {
     // .subscribe((data) =>
     //   this.DownloadPDF(data, 'storno_' + receipt_number + '_' + store_id)
     // );
+  }
+
+  GetProvince(filter: string) {
+    return this.http
+      .get<Province[]>(this.urlAPI + 'Cliente/GetProvince', {
+        params: new HttpParams().append('filter', filter),
+      })
+      .pipe(catchError((error: HttpErrorResponse) => this.ErrorHandler(error)));
   }
 }

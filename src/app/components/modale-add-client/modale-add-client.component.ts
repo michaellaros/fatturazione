@@ -11,7 +11,9 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Observable, firstValueFrom, map } from 'rxjs';
 import { Cliente } from 'src/app/models/cliente';
+import { Province } from 'src/app/models/province';
 import { HttpService } from 'src/app/services/http.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -57,6 +59,9 @@ export class ModaleAddClientComponent {
   public flg_newClient: boolean = true;
   public flg_foreignerClient: boolean = false;
   public matcher = new MyErrorStateMatcher();
+  public provinces: Province[] = [];
+  // public FilteredProvinces: Observable<Province[]>;
+
   public constructor(
     public dialogRef: MatDialogRef<ModaleAddClientComponent>,
     private fb: FormBuilder,
@@ -96,16 +101,16 @@ export class ModaleAddClientComponent {
         Validators.required,
         Validators.maxLength(40),
       ]),
-      zipcode: new FormControl(null, [
+      zipcode: new FormControl({ value: null, disabled: true }, [
         Validators.required,
         Validators.maxLength(15),
       ]),
       cod_destinazione: new FormControl(null, [Validators.maxLength(7)]),
-      district_code: new FormControl(null, [
+      district_code: new FormControl({ value: null, disabled: true }, [
         Validators.required,
         Validators.maxLength(15),
       ]),
-      country_code: new FormControl(null, [
+      country_code: new FormControl({ value: null, disabled: true }, [
         Validators.required,
         Validators.maxLength(2),
       ]),
@@ -138,10 +143,34 @@ export class ModaleAddClientComponent {
         note: this.client.note,
       });
     }
+    // this.FilteredProvinces = this.form
+    //   .get('city')!
+    //   .valueChanges.pipe(
+    //     map((filter: string) =>
+    //       filter ? this._filterProvinces(filter) : this.provinces.slice()
+    //     )
+    //   );
+  }
+
+  ngOnInit() {
+    this.form.get('city')?.valueChanges.subscribe((filter) => {
+      console.log(filter);
+      if (filter.length > 1 && !this.flg_foreignerClient) {
+        this.http.GetProvince(filter).subscribe((data) => {
+          this.provinces = data;
+        });
+      } else {
+        this.provinces = [];
+      }
+    });
   }
 
   public AddClient() {
-    if (this.form.valid && !this.IsCfPivaPassportNull()) {
+    if (
+      this.form.valid &&
+      !this.IsCfPivaPassportNull() &&
+      this.checkProvinceSelected()
+    ) {
       let client = new Cliente(
         null,
         this.form.value['business_name'],
@@ -170,7 +199,11 @@ export class ModaleAddClientComponent {
   }
 
   public UpdateClient() {
-    if (this.form.valid && !this.IsCfPivaPassportNull()) {
+    if (
+      this.form.valid &&
+      !this.IsCfPivaPassportNull() &&
+      this.checkProvinceSelected()
+    ) {
       let client = new Cliente(
         this.client!.id,
         this.form.value['business_name'],
@@ -198,21 +231,37 @@ export class ModaleAddClientComponent {
   }
 
   public SetForeignerClient(flg_foreignerClient: boolean) {
+    this.flg_foreignerClient = flg_foreignerClient;
     if (flg_foreignerClient) {
       this.form.patchValue({
         piva: null,
         cf: null,
+        city: null,
+        zipcode: null,
+        district_code: null,
+        country_code: null,
       });
       this.form.get('piva')?.disable();
       this.form.get('cf')?.disable();
       this.form.get('passport_number')?.enable();
+      this.form.get('zipcode')?.enable();
+      this.form.get('district_code')?.enable();
+      this.form.get('country_code')?.enable();
+      this.provinces = [];
     } else {
       this.form.patchValue({
         passport_number: null,
+        city: null,
+        zipcode: null,
+        district_code: null,
+        country_code: null,
       });
       this.form.get('piva')?.enable();
       this.form.get('cf')?.enable();
       this.form.get('passport_number')?.disable();
+      this.form.get('zipcode')?.disable();
+      this.form.get('district_code')?.disable();
+      this.form.get('country_code')?.disable();
     }
   }
 
@@ -228,4 +277,30 @@ export class ModaleAddClientComponent {
   public IsCfVlaid() {
     return this.form.get('cf')!.valid;
   }
+
+  public SetProvince(province: Province) {
+    this.form.patchValue({
+      city: province.citta!,
+      zipcode: province.codice!,
+      district_code: province.provincia,
+      country_code: province.cod_paese,
+    });
+  }
+
+  private checkProvinceSelected() {
+    return (
+      this.form.value['city'] != null &&
+      this.form.value['zipcode'] != null &&
+      this.form.value['district_code'] != null &&
+      this.form.value['country_code'] != null
+    );
+  }
+
+  // private _filterProvinces(filter: string) {
+  //   const filterValue = filter.toLowerCase();
+
+  //   return this.provinces.filter((province) =>
+  //     province.citta!.toLowerCase().includes(filterValue)
+  //   );
+  // }
 }
