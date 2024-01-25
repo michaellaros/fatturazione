@@ -23,10 +23,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   ): boolean {
     const isSubmitted = form && form.submitted;
     return (
-      ((form?.form.value['cf'] == null || form?.form.value['cf'] == '') &&
-        (form?.form.value['piva'] == null || form?.form.value['piva'] == '') &&
-        (form?.form.value['passport_number'] == null ||
-          form?.form.value['passport_number'] == '') &&
+      (!(
+        form?.form.value['cf'] != undefined ||
+        form?.form.value['piva'] != undefined ||
+        form?.form.value['passport_number'] != undefined
+      ) &&
         (isSubmitted! || control!.touched)) ||
       (control! && control.invalid)
     );
@@ -36,10 +37,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export function lengthValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value = control.value;
-
     if (
-      value == null ||
-      (value && (value.length === 11 || value.length === 16))
+      !value ||
+      (value &&
+        (value.length === 0 || value.length === 11 || value.length === 16))
     ) {
       return null; // Return null if the validation passes
     }
@@ -166,6 +167,7 @@ export class ModaleAddClientComponent {
   }
 
   public AddClient() {
+    console.log(this.checkProvinceSelected());
     if (
       this.form.valid &&
       !this.IsCfPivaPassportNull() &&
@@ -173,24 +175,24 @@ export class ModaleAddClientComponent {
     ) {
       let client = new Cliente(
         null,
-        this.form.value['business_name'],
-        this.form.value['cf'],
-        this.form.value['piva'],
-        this.form.value['passport_number'],
-        this.form.value['surname'],
-        this.form.value['name'],
-        this.form.value['client_id'],
-        this.form.value['email'],
-        this.form.value['tel_number'],
-        this.form.value['cel_number'],
-        this.form.value['address'],
-        this.form.value['city'],
-        this.form.value['zipcode'],
+        this.form.get('business_name')!.value,
+        this.form.get('cf')!.value,
+        this.form.get('piva')!.value,
+        this.form.get('passport_number')!.value,
+        this.form.get('surname')!.value,
+        this.form.get('name')!.value,
+        this.form.get('client_id')!.value,
+        this.form.get('email')!.value,
+        this.form.get('tel_number')!.value,
+        this.form.get('cel_number')!.value,
+        this.form.get('address')!.value,
+        this.form.get('city')!.value,
+        this.form.get('zipcode')!.value,
 
-        this.form.value['district_code'],
-        this.form.value['country_code'],
-        this.form.value['cod_destinazione'],
-        this.form.value['note']
+        this.form.get('district_code')!.value,
+        this.form.get('country_code')!.value,
+        this.form.get('cod_destinazione')!.value,
+        this.form.get('note')!.value
       );
       this.http
         .InsertClient(client)
@@ -199,6 +201,7 @@ export class ModaleAddClientComponent {
   }
 
   public UpdateClient() {
+    console.log(this.form.get('cf')?.valid);
     if (
       this.form.valid &&
       !this.IsCfPivaPassportNull() &&
@@ -206,23 +209,23 @@ export class ModaleAddClientComponent {
     ) {
       let client = new Cliente(
         this.client!.id,
-        this.form.value['business_name'],
-        this.form.value['cf'],
-        this.form.value['piva'],
-        this.form.value['passport_number'],
-        this.form.value['surname'],
-        this.form.value['name'],
-        this.form.value['client_id'],
-        this.form.value['email'],
-        this.form.value['tel_number'],
-        this.form.value['cel_number'],
-        this.form.value['address'],
-        this.form.value['city'],
-        this.form.value['zipcode'],
-        this.form.value['district_code'],
-        this.form.value['country_code'],
-        this.form.value['cod_destinazione'],
-        this.form.value['note']
+        this.form.get('business_name')!.value,
+        this.form.get('cf')!.value,
+        this.form.get('piva')!.value,
+        this.form.get('passport_number')!.value,
+        this.form.get('surname')!.value,
+        this.form.get('name')!.value,
+        this.form.get('client_id')!.value,
+        this.form.get('email')!.value,
+        this.form.get('tel_number')!.value,
+        this.form.get('cel_number')!.value,
+        this.form.get('address')!.value,
+        this.form.get('city')!.value,
+        this.form.get('zipcode')!.value,
+        this.form.get('district_code')!.value,
+        this.form.get('country_code')!.value,
+        this.form.get('cod_destinazione')!.value,
+        this.form.get('note')!.value
       );
       this.http
         .UpdateClient(client)
@@ -289,10 +292,10 @@ export class ModaleAddClientComponent {
 
   private checkProvinceSelected() {
     return (
-      this.form.value['city'] != null &&
-      this.form.value['zipcode'] != null &&
-      this.form.value['district_code'] != null &&
-      this.form.value['country_code'] != null
+      this.form.get('city')!.value != null &&
+      this.form.get('zipcode')!.value != null &&
+      this.form.get('district_code')!.value != null &&
+      this.form.get('country_code')!.value != null
     );
   }
 
