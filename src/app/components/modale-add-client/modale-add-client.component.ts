@@ -154,6 +154,14 @@ export class ModaleAddClientComponent {
   }
 
   ngOnInit() {
+    let initialCity = this.form.get('city')?.value;
+    if (initialCity?.length > 1 && !this.flg_foreignerClient) {
+      this.http.GetProvince(initialCity).subscribe((data) => {
+        this.provinces = data;
+      });
+    } else {
+      this.provinces = [];
+    }
     this.form.get('city')?.valueChanges.subscribe((filter) => {
       console.log(filter);
       if (filter.length > 1 && !this.flg_foreignerClient) {

@@ -12,8 +12,16 @@
   </button>
 </div>
 <mat-dialog-content class="py-0">
-  <h2 *ngIf="errore.status === 404">Nessun elemento trovato!</h2>
-  <h2 *ngIf="errore.status === 409">Operazione non permessa!</h2>
+  <h2>
+    {{
+      errore.status === 404
+        ? "Nessun elemento trovato!"
+        : errore.status === 409
+        ? "Operazione non permessa!"
+        : errore.error
+    }}
+  </h2>
+  <!-- <h2 *ngIf="errore.status === 409"></h2> -->
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button color="primary" [mat-dialog-close]>conferma</button>

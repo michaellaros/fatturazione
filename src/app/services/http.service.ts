@@ -86,6 +86,7 @@ export class HttpService {
   }
 
   ErrorHandler(error: HttpErrorResponse) {
+    console.log(error);
     const dialogRef = this.dialog.open(ModaleErroreComponent, { data: error });
 
     return throwError(() => new Error(error.message || 'Server error!'));
